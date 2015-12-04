@@ -17,11 +17,18 @@ function charger_calendrier() {
 	var key = "shu9eiLelohgh1aW"; // c'est pas un grand secret ;-)
 
 	var net_ok = false;
-	if (navigator.connection.type == Connection.WIFI) { net_ok = true }
-	else if (navigator.connection.type == Connection.CELL_3G) { net_ok = true }
-	else if (navigator.connection.type == Connection.CELL_4G) { net_ok = true }
-	else if (navigator.connection.type == Connection.ETHERNET) { net_ok = true }
-
+	$('#maj_log').append("Tests connection !<br/>");
+	if (navigator == undefined)
+		$('#maj_log').html("Nav undef");
+	try {
+		if (navigator.connection.type == Connection.WIFI) { net_ok = true }
+		else if (navigator.connection.type == Connection.CELL_3G) { net_ok = true }
+		else if (navigator.connection.type == Connection.CELL_4G) { net_ok = true }
+		else if (navigator.connection.type == Connection.ETHERNET) { net_ok = true }
+	} catch (e) {
+		$('#maj_log').html("pb pendant le test de connection :<br/>"+e.message+"<br/>");
+		net_ok = true;
+	}
 	if (!net_ok) {
 		navigator.notification.alert("Pas de connection Internet", null, "Erreur", "Ok");
 		return;
