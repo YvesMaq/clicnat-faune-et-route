@@ -5,7 +5,6 @@
 	</footer>
 </div>
 {literal}
-<script>$(document).ready(function () { page_accueil_init();});</script>
 <!-- Piwik -->
 <script type="text/javascript">
 var pkBaseURL = (("https:" == document.location.protocol) ? "https://stats.picardie-nature.org/" : "http://stats.picardie-nature.org/");
