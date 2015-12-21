@@ -96,16 +96,7 @@
 
 
 <div class="container" style="width: 1000px; margin-left:auto; margin-right: auto;">
-	<div class="row">
-		<div class="col-lg-12">
-			<div id="banniere_ar">
-				<div id="banniere" class="banniere">
-					<ul>{include file="menu.tpl"}</ul>
-				</div>
-			</div>
-			
-		</div>
-	</div>
+	{include file="__entete.tpl"}
 	{if $msg_ok}<div id="ok" style="font-size: 16px;color:green;text-align:center;">Observation enregistrée, Merci !</div>{/if}
 	<div class="row">
 		<div class="col-lg-4">
@@ -200,26 +191,8 @@
 				</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-lg-12" style="text-align:center;">
-			{include file=pied.tpl}
-		</div>
-	</div>
-</div>
-{literal}
-<script>$(document).ready(function () { page_accueil_init();});</script>
-<!-- Piwik -->
-<script type="text/javascript">
-var pkBaseURL = (("https:" == document.location.protocol) ? "https://stats.picardie-nature.org/" : "http://stats.picardie-nature.org/");
-document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-</script><script type="text/javascript">
-try {
-var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 7);
-piwikTracker.trackPageView();
-piwikTracker.enableLinkTracking();
-} catch( err ) {}
-</script><noscript><p><img src="http://stats.picardie-nature.org/piwik.php?idsite=7" style="border:0" alt="" /></p></noscript>
-<!-- End Piwik Tracking Code -->
-{/literal}
-</body>
+	{include file="__footer.tpl"}
+	{literal}
+<script>$(document).ready(function () { page_accueil_init();});</script>{/literal}
+	</body>
 </html>
