@@ -13,6 +13,9 @@
 <script src="https://ssl.picardie-nature.org/statique/jquery-ui-1.11.4/jquery-ui.min.js"></script>
 <script src="https://ssl.picardie-nature.org/statique/OpenLayers-3.11.2/ol.js"></script>
 <script src="https://ssl.picardie-nature.org/statique/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+<script src="pointsnoirs.js"></script>
+
+
 <style>
 {literal}
 .bloc-actu a {
@@ -21,6 +24,7 @@
 .bloc-actu  {
 	margin: 10px;
 	clear:both;
+
 }
 .bloc-actu-suite {
 	text-align:right;
@@ -37,21 +41,24 @@
 </div>
 <div class="container" style="width: 1000px; margin-left:auto; margin-right: auto;">
 	{include file="__entete.tpl"}
-	<div class="pn_main" style="clear:both;">
+	<div class="pn_main col-xs-12">
 		<div style="height:4px;"></div>
 		<h1>Actualités sur les continuités écologiques en Picardie</h1>
-		<div id="bloc-a">
-			<div class="bloc-actu">
+		<section id="bloc-a">
+			<div class="bloc-actu row">
 			{foreach from=$actus item=actu}	
+			<article class="row">
 				<h1><a href="{$actu->lien}">{$actu->titre}</a></h1>
-				<p><a href="{$actu->lien}">{$actu->description}</a></p>
-				<div class="bloc-actu-suite"><a href="{$actu->lien}">lire l'article complet</a></div>
+				<div class="bloc-actu-pre row"><a href="{$actu->lien}">{$actu->description}</a></div>
+				<div class="bloc-actu-suite row"><a href="{$actu->lien}">lire l'article complet</a></div>
+			</article>
 			{/foreach}
 			</div>
-		</div>
+		</section>
 	</div>
 	{include file="__footer.tpl"}
-	
+		{literal}
+<script>$(document).ready(function () { page_actu_init();});</script>{/literal}
 </div>
 </body>
 </html>

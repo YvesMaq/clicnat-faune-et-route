@@ -232,9 +232,14 @@ function actualise_tableau() {
 	$('#fiche').hide();
 	$('#tableau').show();
 }
-
+function page_complements_init(){
+	 page_accueil_maj_fond();
+}
+	
 function page_actu_init(){
-	actualise_tableau();
+	 page_accueil_maj_fond();
+	 var articles = $('#bloc-actu').find('article');
+	 $('.bloc-actu-pre').has('img').height('183px');
 }
 
 function page_accueil_init() {
