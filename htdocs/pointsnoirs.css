@@ -1,47 +1,9 @@
-/*
- * NE PAS MODIFIER CE FICHIER
- * LE FICHIER ORIGINAL EST
- * promontoire/htdocs/css/style.css 
- *
- */
-/* couleurs
-obs : rgb(198,229,72)
-prot: #009687
-env : #D9C311
-anim: #9D5FD9
-texte titre: #737373
-texte chapo: #666666
-texte labeur: #333333
-
-
-fond de carte : rgb(146,126,81)
-*******/
-
-/* Le body porte le background herisson */
+/* fix Openlayers */
+img.olTileImage {
+        max-width: none;
+}
 
 body {
-	background-color: rgb(170,163,150);
-	background-position: top right;
-	background-repeat: no-repeat;
-	font-family: arial,sans-serif;
-	font-size: 1em;
-	color: #333;
-	margin: 0px;
-	padding:0px;
-	text-align:center;
-}
-
-
-h1, h2 {
-	margin-top: 0px;
-	border-bottom-style: solid;
-	border-bottom-color: rgb(156,39,39);
-	border-bottom-width: 3px;
-}
-
-h1 {
-	margin-top: 0px;
-	font-size: 30px;
 }
 
 .fond_boite {
@@ -50,10 +12,6 @@ h1 {
 
 a img {
 	border: none;
-}
-
-input {
-	border: solid 1px #005e4e;
 }
 
 a {
@@ -68,47 +26,46 @@ a:visited {
 	color: blue;
 }
 
-/* le div globcont contient tout le contenu de la page */
-div#globcont {
-	min-width: 1000px;
-	width: 1000px;
-	border: solid 1px #808080;
-	margin:0px auto;
-	margin-top: 15px;
-	text-align: left;
-}
-
-/* bloc-haut contient tout le header (logo, pancarte, recherche, ligne, raccourcis) */
-div#bloc-haut {
-	margin-left: 25px;
-	margin-right: 25px;
-}
 div#banniere_ar {
 	height: 180px;
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
 	overflow: hidden;
 }
+
 .banniere_fond {
+	position: absolute;
+	top: 0px;
+	left: 0px;
 	height: 0px;
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
 	background-repeat: repeat-x;
+	z-index: -1;
 }
 .banniere_fond_visible {
 	height: 180px;
 }
 div#banniere {
-	float:left;
 	height: 180px;
 	width: 1000px;
+	position; absolute;
+	top: 0px;
+	left: 0px;
 	background-image: url('image/banniere_fond.png');
-	background-repeat: repeat-x;
+	background-repeat: no-repeat;
 	padding-top: 150px;
 }
-
+/*
 div#banniere2, div#banniere3 {
 	padding-left: 5px;
 	height: 30px;
 	background-image: url('image/banniere_fond.png');
 	background-repeat: repeat-x;
-}
+}*/
+
 .banniere ul {
 	margin: 0px;
 	list-style-type: none;
@@ -250,13 +207,13 @@ div#b-haut-2 {
 	width:			70px;
 	height:			42px;
 }
-
+/*
 div {
 	margin: 0px;
 	padding: 0px;
 	border-width: 0px;
 }
-
+*/
 IMG.head-bot-picto {
 	position:		absolute;
 	clip:			rect(0 70px 42px 0);
@@ -1097,3 +1054,7 @@ div.pas_de_carte_dispo {
 }
 .groupe a { display: block; }
 
+.fill {
+	width: 100%;
+	height: 100%;
+}

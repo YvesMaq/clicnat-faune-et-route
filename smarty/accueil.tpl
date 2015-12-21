@@ -3,7 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
 <head>
 	<title>Clicnat - Faune et route</title>
-	<link href="http://deco.picardie-nature.org/jquery/css/redmond/jquery-ui-1.8.2.custom.css" media="all" rel="stylesheet" type="text/css" />
+	<link href="https://ssl.picardie-nature.org/statique/jquery-ui-1.11.4/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+	<link href="https://ssl.picardie-nature.org/statique/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="https://ssl.picardie-nature.org/statique/bootstrap-3.3.4-dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+	<link href="https://ssl.picardie-nature.org/statique/OpenLayers-3.11.2/ol.css" rel="stylesheet" type="text/css"/>
 	<link href="pointsnoirs.css" media="all" rel="stylesheet" type="text/css"/>
 	{if $usedatatable}
 	<link href="http://deco.picardie-nature.org/datatables/media/css/demo_table.css" media="all" rel="stylesheet" type="text/css"/>
@@ -12,12 +15,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=7" />
 </head>
 <body>
-<script src="https://maps.googleapis.com/maps/api/js?key={$clegmap}&sensor=false">" type="text/javascript"></script>
-{foreach from=$jslibs item=jslib}
-<script src="{$jslib}" language="javascript"></script>
-{/foreach}
+<script src="https://ssl.picardie-nature.org/statique/jquery/jquery-1.11.2.min.js"></script>
+<script src="https://ssl.picardie-nature.org/statique/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+<script src="https://ssl.picardie-nature.org/statique/OpenLayers-3.11.2/ol.js"></script>
+<script src="https://ssl.picardie-nature.org/statique/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
 <script src="pointsnoirs.js"></script>
-<script src="http://poste.obs.picardie-nature.org/js/carte.js"></script>
 <div style="clear:both;">
 	{foreach from=$msgs item=msg}
 		<p>{$msg}</p>
@@ -41,7 +43,6 @@
 				//{/literal}
 				</script>
 			</div>
-
 			ou choisir une espèce
 			<div class="groupe groupe_liste" id="batraciens">
 				{foreach from=$batraciens item=e}
@@ -92,23 +93,40 @@
 		</div>
 	</div>
 </div>
-<div id="globcont" style="min-width: 1000px;">
-	<div class="bloc-haut" style="min-width: 1000px;">
-		<div id="banniere_ar">
-			<div id="banniere" class="banniere">
-				<ul>{include file="menu.tpl"}</ul>
+
+
+<div class="container" style="width: 1000px; margin-left:auto; margin-right: auto;">
+	<div class="row">
+		<div class="col-lg-12">
+			<div id="banniere_ar">
+				<div id="banniere" class="banniere">
+					<ul>{include file="menu.tpl"}</ul>
+				</div>
 			</div>
-			<div class="banniere_fond banniere_fond_visible" style="background-image: url('image/banniere_fond_a.jpg');"></div>
-			<div class="banniere_fond" style="background-image: url('image/banniere_fond_b.jpg');"></div>
-			<div class="banniere_fond" style="background-image: url('image/banniere_fond_c.jpg');"></div>
+			
 		</div>
 	</div>
-	<div class="pn_main" style="clear:both;">
-		<div style="height:4px;"></div>
-		{if $msg_ok}<div id="ok" style="font-size: 16px;color:green;text-align:center;">Observation enregistrée, Merci !</div>{/if}
-		<div id="bloc-a">
-			<div id="bloc-a-image"></div>
-			<div id="bloc-a-pre">
+	{if $msg_ok}<div id="ok" style="font-size: 16px;color:green;text-align:center;">Observation enregistrée, Merci !</div>{/if}
+	<div class="row">
+		<div class="col-lg-4">
+			<div style="height: 30px;"></div>
+			<div id="bloc-img" class="carousel slide" data-ride="carousel">
+				<div class="carousel-inner">
+					<div class="item active"><img src="image/illustration_a.jpg"/></div>
+					<div class="item"><img src="image/illustration_b.jpg"/></div>
+					<div class="item"><img src="image/illustration_c.jpg"/></div>
+					<div class="item"><img src="image/illustration_d.jpg"/></div>
+					<div class="item"><img src="image/illustration_e.jpg"/></div>
+					<div class="item"><img src="image/illustration_f.jpg"/></div>
+					<div class="item"><img src="image/illustration_g.jpg"/></div>
+					<div class="item"><img src="image/illustration_h.jpg"/></div>
+					<div class="item"><img src="image/illustration_i.jpg"/></div>
+					<div class="item"><img src="image/illustration_j.jpg"/></div>
+					<div class="item"><img src="image/illustration_k.jpg"/></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-8">
 				<h1>La faune sauvage sur les routes de Picardie</h1>
 				La faune a des besoins territoriaux vitaux et se déplace entre ces territoires,
 				saisonnièrement pour la reproduction comme les amphibiens ou quotidiennement pour
@@ -123,14 +141,15 @@
 				lorsqu'il le sera possible des mesures de protection (crapauduc, écuroduc...).<br/><br/>
 				Si vous souhaitez des renseignements sur cette enquête, contactez Virginie au 03.62.72.22.57
 				ou par mail : virginie.coffinet@picardie-nature.org.
-			</div>
-			<div style="clear:both;"></div>
 		</div>
-		<div id="bloc-b">
-			<div id="bloc-b-carte">
-				<div id="bloc-b-carte-in"></div>
+	</div>
+	<div class="row">
+		<div class="col-lg-8">
+			<div id="bloc-b-carte-in">
+				<div id="olmap" class="fill"></div>
 			</div>
-			<div id="bloc-b-form">
+		</div>
+		<div class="col-lg-4">
 				<div id="form-instructions">
 					<h1>Instructions</h1>
 					<p><b>A</b> Placer la carte sur la zone de l'observation.</p>
@@ -179,10 +198,10 @@
 						<input type="submit" value="Continuer"/>
 					</form>
 				</div>
-			</div>
-			<div style="clear:both;"></div>
 		</div>
-		<div style="text-align:center;">
+	</div>
+	<div class="row">
+		<div class="col-lg-12" style="text-align:center;">
 			{include file=pied.tpl}
 		</div>
 	</div>

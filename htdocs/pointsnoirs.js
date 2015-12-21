@@ -1,4 +1,4 @@
-OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
+/*OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
 	defaultHandlerOptions: {
 		single: true,
 		double: false,
@@ -27,7 +27,7 @@ OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
 		$('#statut_click').html('Vous devez zoomer plus');
 	    }
 	}
-});
+});*/
 
 function annuler(id_espece) {
 	var my_i = new Array();
@@ -113,34 +113,60 @@ function Inventaire(id_espece,nom,nb_mort,nb_vivant,indice_q_mort,indice_q_vivan
 	}
 }
 
-function on_zoomend(obj) {
-	if (this.getZoom() < 15) {
-		$('#statut_zoom_plus').show();
-		$('#statut_zoom_ok').hide();
-		var n = 15 - this.getZoom();
-		if (n>1) $('#statut_zoom_info').html('Il reste '+n+' niveaux de zoom a traverser');
-		else $('#statut_zoom_info').html('Il reste un dernier niveau de zoom a traverser');
-	} else {
-		$('#statut_zoom_plus').hide();
-		$('#statut_zoom_ok').show();
-		$('#statut_zoom_info').html('');
-	}
-}
-
 function init_carte(id_map) {
+	var styles = [ 'Road', 'Aerial', 'AerialWithLabels', 'collinsBart', 'ordnanceSurvey' ];
+	var bing = new ol.layer.Tile({ 
+		visible: true,
+		preload: Infinity,
+		source: new ol.source.BingMaps({
+			key: 'Ah-gSVhOCszl1-LJ6d1gs11SXprWx2-BM6GUkUiqcDAmRWEgV2tNQ_1a7M2wJ33t',
+			imagerySet: styles[2]
+		})
+	});
+	var vector = new ol.layer.Vector({
+		// source: new ol.source.GeoJSON({
+		//	url: 'data/geojson/countries.geojson',
+		//	projection: 'EPSG:3857'
+		// }),
+		style: new ol.style.Style({ 
+			fill: new ol.style.Fill({ color: 'rgba(255, 255, 255, 0.6)' }),
+			stroke: new ol.style.Stroke({ color: '#319FD3', width: 1 }) 
+		})
+	});
+	var view = new ol.View({
+		// make sure the view doesn't go beyond the 22 zoom levels of Google Maps
+		maxZoom: 19
+	});
+	var olMapDiv = document.getElementById('olmap');
+	carte = new ol.Map({
+		layers: [bing],
+		target: olMapDiv,
+		view: new ol.View({
+			center: [-6655.5402445057125, 6709968.258934638],
+			zoom: 13
+	        })
+	});
+	view.setCenter([0, 0]);
+	view.setZoom(1);
+
+/*
+
 	var options = {
 		projection: new OpenLayers.Projection('EPSG:900913'),
 		displayProjection: new OpenLayers.Projection('EPSG:4326'),
 		units: "m",
-		numZoomLevel: 18,
-		maxResolution: 156543.0339,
+		numZoomLevel: 19,
+	//	maxResolution: 78271.516964,
 		maxExtent: new OpenLayers.Bounds(-20037508, -20037508, 20037508, 20037508.34)
 	};
 	imap = new OpenLayers.Map(id_map, options);
 	imap.addControl(new OpenLayers.Control.LayerSwitcher());
-	var ghyb = new OpenLayers.Layer.Google("Google Hybride", {type: google.maps.MapTypeId.HYBRID, numZoomLevels: 20, sphericalMercator: true});
+	var ghyb = new OpenLayers.Layer.Google("Google Hybride", {type: google.maps.MapTypeId.HYBRID});
 	layer = new OpenLayers.Layer.Markers('Point');
 	imap.addLayers([ghyb,layer]);
+	console.log(ghyb.mapObject);
+	ghyb.mapObject.setTilt(0);
+
 	var pt = new OpenLayers.LonLat(2.80151, 49.69606);
 		
 	pt.transform(imap.displayProjection, imap.projection);
@@ -148,12 +174,26 @@ function init_carte(id_map) {
 
 	imap.setCenter(pt, z);
 
-	imap.events.register('zoomend', null, on_zoomend);
+	imap.events.register('zoomend', null, function (obj) {
+		console.log(this.getZoom());
+		/*if (this.getZoom() < 15) {
+			$('#statut_zoom_plus').show();
+			$('#statut_zoom_ok').hide();
+			var n = 15 - this.getZoom();
+			if (n>1) $('#statut_zoom_info').html('Il reste '+n+' niveaux de zoom a traverser');
+			else $('#statut_zoom_info').html('Il reste un dernier niveau de zoom a traverser');
+		} else {
+			$('#statut_zoom_plus').hide();
+			$('#statut_zoom_ok').show();
+			$('#statut_zoom_info').html('');
+		}*/
+	//});
 
-	var click = new OpenLayers.Control.Click();
+	/*var click = new OpenLayers.Control.Click();
 	imap.addControl(click);
-	click.activate();
-	return imap;
+	click.activate();*/
+	//return imap;
+	
 }
 
 function marque_point(p) {
@@ -194,7 +234,15 @@ function page_accueil_maj_image() {
 	setTimeout("page_accueil_maj_image()", 8000);
 }
 
+var img_fond = 0;
 function page_accueil_maj_fond() {
+	var images = ['image/banniere_fond_a.jpg','image/banniere_fond_b.jpg','image/banniere_fond_c.jpg'];
+	img_fond = (img_fond + 1) % images.length;
+	$('#banniere_ar').css('backgroundImage', 'url("'+images[img_fond]+'")');
+	setTimeout("page_accueil_maj_fond()", 15000);
+}
+
+function __page_accueil_maj_fond() {
 	var elems = $('.banniere_fond');
 	for (var i=0; i<elems.length; i++) {
 		var e = $(elems[i]);
@@ -237,6 +285,7 @@ function page_accueil_init() {
 	var d = $('#f_date');
 	d.datepicker({maxDate: 0});
 	d.datepicker("option","fr");
+	$('.carousel').carousel();
 
 	$('#fa').submit(function () {
 		try {
