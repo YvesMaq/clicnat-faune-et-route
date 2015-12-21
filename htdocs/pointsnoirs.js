@@ -276,6 +276,10 @@ function actualise_tableau() {
 	$('#tableau').show();
 }
 
+function page_actu_init(){
+	actualise_tableau();
+}
+
 function page_accueil_init() {
 	page_accueil_maj_fond();
 	page_accueil_maj_image();

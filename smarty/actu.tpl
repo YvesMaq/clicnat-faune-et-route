@@ -9,6 +9,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=7" />
 </head>
 <body>
+<script src="https://ssl.picardie-nature.org/statique/jquery/jquery-1.11.2.min.js"></script>
+<script src="https://ssl.picardie-nature.org/statique/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+<script src="https://ssl.picardie-nature.org/statique/OpenLayers-3.11.2/ol.js"></script>
+<script src="https://ssl.picardie-nature.org/statique/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
 <style>
 {literal}
 .bloc-actu a {
@@ -31,17 +35,8 @@
 		<p>{$msg}</p>
 	{/foreach}
 </div>
-<div id="globcont" style="min-width: 1000px;">
-	<div class="bloc-haut" style="min-width: 1000px;">
-		<div id="banniere_ar">
-			<div id="banniere" class="banniere">
-				<ul>{include file="menu.tpl"}</ul>
-			</div>
-			<div class="banniere_fond banniere_fond_visible" style="background-image: url('image/banniere_fond_a.jpg');"></div>
-			<div class="banniere_fond" style="background-image: url('image/banniere_fond_b.jpg');"></div>
-			<div class="banniere_fond" style="background-image: url('image/banniere_fond_c.jpg');"></div>
-		</div>
-	</div>
+<div class="container" style="width: 1000px; margin-left:auto; margin-right: auto;">
+	{include file="__entete.tpl"}
 	<div class="pn_main" style="clear:both;">
 		<div style="height:4px;"></div>
 		<h1>Actualités sur les continuités écologiques en Picardie</h1>
@@ -55,20 +50,8 @@
 			</div>
 		</div>
 	</div>
+	{include file="__footer.tpl"}
+	
 </div>
-{literal}
-<!-- Piwik -->
-<script type="text/javascript">
-var pkBaseURL = (("https:" == document.location.protocol) ? "https://stats.picardie-nature.org/" : "http://stats.picardie-nature.org/");
-document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-</script><script type="text/javascript">
-try {
-var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 7);
-piwikTracker.trackPageView();
-piwikTracker.enableLinkTracking();
-} catch( err ) {}
-</script><noscript><p><img src="http://stats.picardie-nature.org/piwik.php?idsite=7" style="border:0" alt="" /></p></noscript>
-<!-- End Piwik Tracking Code -->
-{/literal}
 </body>
 </html>
