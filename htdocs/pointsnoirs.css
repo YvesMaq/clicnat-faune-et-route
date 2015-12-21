@@ -120,126 +120,6 @@ div#sous-titre {
 	font-style: italic;
 	font-weight: bold;
 }
-/* bloc-haut est découpé en 3 rondelles */
-/* b-haut-1 : logo, pancartes, recherche */
-DIV#b-haut-1cont {
-	position:		relative;
-	height:			180px;
-	padding-left:		50px;
-	padding-right:		50px;
-}
-
-DIV#b-haut-1 {
-	position:		absolute;
-	bottom:			0px;
-	width:			90%;
-}
-
-DIV#b-haut-1in {
-	position:		relative;
-}
-
-DIV#b-haut-logo {
-	position:		absolute;
-	bottom:			0px;
-	left:			0px;
-}
-
-DIV#b-haut-pancartes {
-	position:		absolute;
-	bottom:			0px;
-	width: 100%;
-	background-image:	url('http://deco.picardie-nature.org/pix/carte_accueil.png');
-	background-position: 	center;
-	background-repeat:	no-repeat;
-	text-align: center;
-}
-
-#b-haut-rechcont {
-	position:		absolute;
-	bottom:			0px;
-	right:			0px;
-}
-
-#b-haut-recherche {
-	position:		relative;
-	height:			135px;
-	width:			250px;
-}
-
-DIV#recherche {
-	position:		absolute;
-	right:			0px;
-	top:			35%;
-}
-
-INPUT#rechok {
-	border:			none;
-	background:		rgb(198,229,72);
-	color:			#fff;
-}
-
-#liens {
-	position:		absolute;
-	right:			0px;
-	bottom:			0px;
-	text-align:		right;
-	color:			rgb(198,229,72);
-}
-
-/* b-haut-2 : ligne */
-div#b-haut-2 {
-	background:		rgb(198,229,72);
-	height:			2px;
-}
-
-/* style rollover pour les picto de l'entete */
-#header-bottom {
-	margin-top:		0.3em;
-	margin-bottom:		1em;
-	height:			42px;
-}
-
-#header-bottom A {
-	display:		block;
-	float:			left;
-	position:		relative;
-	width:			70px;
-	height:			42px;
-}
-/*
-div {
-	margin: 0px;
-	padding: 0px;
-	border-width: 0px;
-}
-*/
-IMG.head-bot-picto {
-	position:		absolute;
-	clip:			rect(0 70px 42px 0);
-}
-
-IMG.head-bot-picto:hover {
-	position:		absolute;
-	clip:			rect(42px 70px 84px 0);
-	margin-top:		-42px;
-}
-
-/* bloc-plaques contient les plaques de l'accueil */
-DIV#bloc-plaques {
-	margin-top: 		0px;
-	margin-left:		25px;
-	margin-right:		25px;
-}
-
-
-/* bloc-bas contient tout le footer (ligne, logo fne, liens) */
-DIV#bloc-bas {
-	margin-top:		0px;
-	padding-top:		25px;
-	background-color: 	rgb(200,200,200);
-}
-
 #logos {
 	text-align: center;
 }
@@ -295,238 +175,6 @@ DIV#bloc-bas {
 	background-position: 0% 0%;
 }
 
-.pn_main {
-	margin: 0px;
-	background-color: rgb(200,200,200);
-	min-height:300px;
-	width:980px;
-	padding-bottom: 20px;
-	clear:both;
-	padding-left: 10px;
-	padding-right: 10px;
-
-}
-
-.directive {margin-bottom: 1px;}
-.valeur {margin-top: 1px;}
-.desc { margin-left: 4px; }
-
-.desc h1 {
-	margin: 0px;
-	background-color: rgb(198,229,72);
-	color: white;
-	font-size: 16px;
-	padding: 4px;
-}
-.desc div {
-	margin: 0px;
-	margin-bottom: 20px;
-	background-color: white;
-	padding: 15px;
-	border-style: solid;
-	border-width: 4px;
-	border-top-style: none;
-	border-color: rgb(198,229,72);
-	font-size: 14px;
-}
-
-.bloc-bas p { 
-	margin-bottom: 0px; 
-}
-
-/* bloc-bas est découpé en 4 rondelles */
-/* b-bas-1 : filler */
-DIV#b-bas-1 {
-	position:		relative;
-	height:			43px;
-}
-
-/* b-bas-2 : ligne */
-DIV#b-bas-2 {
-	background:		rgb(198,229,72);
-	height:			4px;
-}
-
-DIV#b-bas-fne {
-	position:		absolute;
-	left:			92px;
-}
-
-DIV#b-bas-eas-cont {
-	position:		relative;
-	top:			35px;
-	text-align:		center;
-}
-SPAN#b-bas-eas {
-	background:		rgb(198,229,72);
-	color:			#FFFFFF;
-	padding-left:		2em;
-	padding-right:		2em;
-	font-weight:		bold;
-}
-
-/* b-bas-3 : liens */
-DIV#b-bas-3 {
-	text-align:		center;
-	margin-top:		0.5em;
-	margin-left:		auto;
-	margin-right:		auto;
-}
-
-DIV#b-bas-3, DIV#b-bas-3 A {
-	color:			rgb(198,229,72);
-}
-
-/* b-bas-4 : coordonnées */
-DIV#b-bas-4 {
-	text-align:		center;
-	margin:			auto;
-}
-
-
-/* Oreille Gauche - le menu de gauche */
-.oreille {
-	color: 			#737373;
-}
-
-#oreille_droite {
-	position:		absolute;
-	width:			130px;
-	right:			10px;
-}
-
-#oreille_gauche {
-	position: 		absolute;
-	width: 			130px;
-	left:			10px;
-}
-
-
-.oreille h1 {
-	margin:			2px;
-	padding:		0px;
-	padding-left:		6px;
-	border-left-width:	2px;
-	border-left-style:	solid;
-	border-color:		#737373;
-	font-size:		18px;
-}
-
-.oreille img {
-	border-top-width:	5px;
-	border-top-style:	solid;
-	border-color:		red;
-}
-
-.oreille ul {
-	list-style-type:	none;
-	padding:		0px;
-	margin:			0px;
-}
-
-.oreille li 
-{
-	border-bottom-width:	2px;
-	border-bottom-style:	solid;
-	border-bottom-color:	white;
-}
-
-.oreille li:hover {
-	border-bottom-color:	#737373;
-}
-
-.oreille a {
-	text-decoration:	none;
-	color:			#737373;
-	display:		block;
-	font-weight:		bold;
-	padding:		2px;
-}
-
-/* autocomplete prototype */
-div.autocomplete {
-	position:		absolute;
-	width:			250px;
-	background-color:	white;
-	border:			1px solid #888;
-	margin:			0px;
-	padding:		0px;
-}
-
-div.autocomplete ul {
-	list-style-type:	none;
-	margin:			0px;
-	padding:		0px;
-}
-
-div.autocomplete ul li.selected {
-	 background-color: 	#ffb;
-}
-
-div.autocomplete ul li {
-	 list-style-type:	none;
-	 display:		block;
-	 margin:		0;
-	 padding:		2px;
-	 cursor:		pointer;
-}
-
-.informal {
-	font-size: 		smaller;
-}
-
-.cal-mois {
-	font-size: 20px;
-	font-weight: normal;
-}
-.cal-jours {
-	font-size: 30px;
-	font-weigh: bold;
-}
-.cal-date {
-	position: relative;
-	width: 10em;
-	border-color: black;
-	border-size : 2px;
-	border-style: solid;
-	background-color: white;
-	text-align: center;
-}
-	
-.cal {
-	border-style: none;
-	background-color: white;
-	opacity: 0.8;
-	margin: 5px;
-	padding: 5px;
-}
-
-.cal-date- {
-}
-
-.cal-date-obs {
-	border-color: rgb(198,229,72);
-}
-
-.cal-date-anim {
-	border-color: #9D5FD9;
-}
-
-.cal-date-prot {
-	border-color: #006987;
-}
-.cal-date-asso {
-	border-color: #9D5FD9;
-}
-
-
-.cal-a {
-	color: black;
-}
-.cal-a:hover {
-	text-decoration: none;
-}
-
 img.bas-logos-picto-cg80 {		
 	clip:			rect(62px 167px 124px 0);
 	margin-top:		-62px;
@@ -539,6 +187,7 @@ img.bas-logos-picto-cg80:hover {
 	clip:			rect(0px 167px 62px 0px);
 }
 
+<<<<<<< HEAD
 .liste-espece a:visited {
 	color: blue;
 }
@@ -1018,15 +667,9 @@ div.pas_de_carte_dispo {
 	overflow:scroll;
 }
 
+=======
+>>>>>>> b96470a5e23b1404ddf2a3989039a530a7ff2ba1
 #choix_especes {
-	width: 750px;
-	height: 400px;
-	position: fixed;
-	top:50%;
-	left:50%;
-	margin-left: -325px;
-	margin-top: -200px;
-	z-index: 6666;
 	background-color:white;
 	border-color: rgb(156,39,39);
 	border-style: solid;
@@ -1035,23 +678,13 @@ div.pas_de_carte_dispo {
 }
 
 #groupes {
-	width: 200px;
 	height: 360px;
 	overflow: auto;
-	float: left;
-	text-align: left;
 }
 
 #fiche {
-	margin: 10px;
-	width: 500px;
-	height: 250px;
-	float:left;
-	text-align:left;
-	border-bottom-color: rgb(156,39,39);
-	border-bottom-width: 2px;
-	border-bottom-style: solid;
 }
+
 .groupe a { display: block; }
 
 .fill {

@@ -44,7 +44,7 @@ function set_fiche_id_espece_nom(id,nom) {
 	$('#fiche_nb_vivants').val('');
 	$('#fiche_commentaire').val('');
 	$('#fiche').show();
-	$('#tableau').hide();
+	//$('#tableau').hide();
 }
 
 function Inventaire(id_espece,nom,nb_mort,nb_vivant,indice_q_mort,indice_q_vivant,commentaire) {
@@ -222,15 +222,15 @@ function actualise_tableau() {
 
 	for (var i=0; i<inventaires.length; i++) {
 		$('#tableau').append(inventaires[i].texte());
-		$('#tableau').append(' <a href="javascript:annuler('+inventaires[i].id_espece+');">(annuler)</a>');
+		$('#tableau').append(' <a class="btn btn-info btn-xs" href="javascript:annuler('+inventaires[i].id_espece+');">retirer</a>');
 		$('#tableau').append("<br/>");
 	}
 
-	$('#tableau').append("<br/><a href=javascript:terminer();>Envoyer vos observations</a><br/>");
-	$('#tableau').append("Vous pouvez aussi ajouter une espèce en cliquant dans la liste à gauche");
+	$('#tableau').append("<br/><a class='btn btn-primary' href=javascript:terminer();>Envoyer vos observations</a><br/>");
+	$('#tableau').append("Vous pouvez aussi ajouter une autre espèce en cliquant dans la liste à gauche");
 
-	$('#fiche').hide();
-	$('#tableau').show();
+	//$('#fiche').hide();
+	//$('#tableau').show();
 }
 function page_complements_init(){
 	 page_accueil_maj_fond();

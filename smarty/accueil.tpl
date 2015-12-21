@@ -27,70 +27,6 @@
 </div>
 <div>
 	<div id="choix_especes" style="display:none;">
-		<div id="groupes">
-			Chercher une espèce
-			<div class="groupe" id="autres" style="margin-bottom:15px;">
-				<input type="text" id="recherche_esp">
-				<script>
-				//{literal}
-				$('#recherche_esp').autocomplete({
-					source: '?p=espece_autocomplete2', 
-					select: function (event,ui) {
-						set_fiche_id_espece_nom(ui.item.value, ui.item.label);
-						return false; 
-					} 
-				});
-				//{/literal}
-				</script>
-			</div>
-			ou choisir une espèce
-			<div class="groupe groupe_liste" id="batraciens">
-				{foreach from=$batraciens item=e}
-					<a href='javascript:set_fiche_id_espece({$e->id_espece});' id="e{$e->id_espece}">{$e}</a>
-				{/foreach}
-			</div>
-			<hr/>
-			<div class="groupe groupe_liste" id="mammiferes">
-				{foreach from=$mammiferes item=e}
-					<a href='javascript:set_fiche_id_espece({$e->id_espece});' id="e{$e->id_espece}">{$e}</a>
-				{/foreach}
-			</div>
-			<hr/>
-			<div class="groupe groupe_liste" id="oiseaux">
-				{foreach from=$oiseaux item=e}
-					<a href='javascript:set_fiche_id_espece({$e->id_espece});' id="e{$e->id_espece}">{$e}</a>
-				{/foreach}
-			</div>
-		</div>
-		<div id="fiche" style="display:none;">
-			<form id="ffiche">
-				<input type="hidden" name="fiche_id_espece" id="fiche_id_espece"/>
-				Espèce : <span id="fiche_nom_espece"></span><br/>
-				Nombre d'individus morts <br/>
-				<input type="text" size="3" id="fiche_nb_morts"> <br/>
-				Niveau de certitude dans l'identification des animaux morts<br/>
-				<select id="f_niveau_certitude_morts">
-					<option value="4">Très fort</option>
-					<option value="3">Fort</option>
-					<option value="2">Moyen</option>
-					<option value="1">Faible</option>
-				</select><br/>
-				Nombres d'individus vivants :<br/> <input type="text" size="3" id="fiche_nb_vivants"><br/>
-				Niveau de certitude dans l'identification des animaux vivants<br/> 
-				<select id="f_niveau_certitude_vivants">
-					<option value="4">Très fort</option>
-					<option value="3">Fort</option>
-					<option value="2">Moyen</option>
-					<option value="1">Faible</option>
-				</select><br/><br/>
-				Commentaire sur l'observation :
-				<textarea cols="40" rows="4" id="fiche_commentaire"></textarea>
-				<input type="submit" value="Ajouter"/>
-			</form>
-		</div>
-		<div id="tableau">
-			<br/>Pour ajouter une espèce cliquez sur son nom.
-		</div>
 	</div>
 </div>
 
@@ -152,43 +88,141 @@
 					<p id="statut_click"></p>
 					<p><b>C</b> Compléter et envoyer le formulaire.</p>
 				</div>
-				<div id="form-saisie" style="display:none;">
-					<h1>Informations</h1>
-					<form id="fa">
-						<input type="hidden" name="lat" id="f_lat"/>
-						<input type="hidden" name="lon" id="f_lon"/>
-						Nom <br/>
-						<input type="text" name="nom" id="f_nom" value="{$sess_nom}"/><br/>
-						Prénom <br/>
-						<input type="text" name="prenom" id="f_prenom" value="{$sess_prenom}"/><br/>
-						<br/>
-						Structure <br/>
-						<input type="text" name="structure" id="f_structure" value="{$sess_structure}"/><br/>
-						<br/>
-						Adresse <br/>
-						<textarea name="adresse" cols="30" rows="3" id="f_adresse"/>{$sess_adresse}</textarea><br/>
-						<br/>
-						Code postal<br/>
-						<input type="text" name="code_postal" value="{$sess_code_postal}"/><br/>
-						Ville<br/>
-						<input type="text" name="ville" value="{$sess_ville}"/><br/>
-						Téléphone <br/>
-						<input type="text" name="tel" id="f_tel" value="{$sess_tel}" /><br/>
-						Email <br/>
-						<input type="text" name="email" id="f_mail" value="{$sess_email}"/><br/>
-						<br/>
-						<input type="checkbox" value="1" name="diff_ok" id="f_diff_ok" {if $sess_diff_ok == "1"}checked{/if}/>
-						<label for="f_diff_ok">J'accepte que mon nom apparaisse sur la carte de répartition des points noirs.</label><br/>
-						<input type="checkbox" value="1" name="particip_ok" id="f_particip_ok" {if $sess_particip_ok == "1"}checked{/if}/>
-						<label for="f_particip_ok">Je souhaiterais participer à des actions de protection près de chez moi</label><br/>
-						<br/>
-						Date d'observation<br/>
-						<input type="text" name="date" id="f_date" size="10"/><br/><br/>
-						Heure de l'observation<br/>
-						<input type="text" size="2" maxlength=2" name="heure_h" if="f_heure_h"/>h<input type="text" size="2" maxlength=2" name="heure_m" id="f_heure_m"/><br/><br/>
-						<input type="submit" value="Continuer"/>
-					</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<h1>Informations</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div id="form-saisie" style="display:block;">
+			<form id="fa">
+				<div class="col-lg-6">
+					<input type="hidden" name="lat" id="f_lat"/>
+					<input type="hidden" name="lon" id="f_lon"/>
+					
+					<label for="f_date">Date d'observation</label><br/>
+					<input type="text" name="date" id="f_date" size="10" required="true"/><br/><br/>
+					<label for="f_heure_h">Heure de l'observation</label><br/>
+					<input type="text" size="2" maxlength=2" name="heure_h" if="f_heure_h"/>h<input type="text" size="2" maxlength=2" name="heure_m" id="f_heure_m"/><br/><br/>
+
+					<label for="f_nom">Nom</label><br/>
+					<input type="text" name="nom" id="f_nom" value="{$sess_nom}" required="true"/><br/>
+
+					<label for="f_prenom">Prénom</label><br/>
+					<input type="text" name="prenom" id="f_prenom" value="{$sess_prenom}" required="true"/><br/>
+
+					<br/>
+					<label for="f_adresse">Adresse</label><br/>
+					<textarea name="adresse" cols="30" rows="3" id="f_adresse"/>{$sess_adresse}</textarea><br/>
+					<br/>
+					<label for="f_code_postal">Code postal</label><br/>
+					<input type="text" name="code_postal" id="f_code_postal" value="{$sess_code_postal}"/><br/>
+
+					<label for="f_ville">Ville</label><br/>
+					<input type="text" name="ville" id="f_ville" value="{$sess_ville}"/><br/>
 				</div>
+				<div class="col-lg-6">
+					<label for="f_tel">Téléphone</label><br/>
+					<input type="text" name="tel" id="f_tel" value="{$sess_tel}" /><br/>
+
+					<label for="f_mail">Email</label><br/>
+					<input type="text" name="email" id="f_mail" value="{$sess_email}"/><br/>
+					<br/>
+					<label for="f_structure">Structure</label> <br/>
+					<input type="text" name="structure" id="f_structure" value="{$sess_structure}"/><br/>
+
+					<br/>
+
+					<label for="f_diff_ok">
+						<input type="checkbox" value="1" name="diff_ok" id="f_diff_ok" {if $sess_diff_ok == "1"}checked{/if}/>
+						J'accepte que mon nom apparaisse sur la carte de répartition des points noirs.
+					</label><br/>
+					<input type="checkbox" value="1" name="particip_ok" id="f_particip_ok" {if $sess_particip_ok == "1"}checked{/if}/>
+					<label for="f_particip_ok">Je souhaiterais participer à des actions de protection près de chez moi</label><br/>
+					<br/>
+					<input class="btn btn-primary" type="submit" value="Continuer"/>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<h1>Espèce observée</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-4">
+			<div id="groupes">
+				Chercher une espèce
+				<div class="groupe" id="autres" style="margin-bottom:15px;">
+					<input type="text" id="recherche_esp">
+					<script>
+					//{literal}
+					$('#recherche_esp').autocomplete({
+						source: '?p=espece_autocomplete2', 
+						select: function (event,ui) {
+							set_fiche_id_espece_nom(ui.item.value, ui.item.label);
+							return false; 
+						} 
+					});
+					//{/literal}
+					</script>
+				</div>
+				ou choisir une espèce
+				<div class="groupe groupe_liste" id="batraciens">
+					{foreach from=$batraciens item=e}
+						<a href='javascript:set_fiche_id_espece({$e->id_espece});' id="e{$e->id_espece}">{$e}</a>
+					{/foreach}
+				</div>
+				<hr/>
+				<div class="groupe groupe_liste" id="mammiferes">
+					{foreach from=$mammiferes item=e}
+						<a href='javascript:set_fiche_id_espece({$e->id_espece});' id="e{$e->id_espece}">{$e}</a>
+					{/foreach}
+				</div>
+				<hr/>
+				<div class="groupe groupe_liste" id="oiseaux">
+					{foreach from=$oiseaux item=e}
+						<a href='javascript:set_fiche_id_espece({$e->id_espece});' id="e{$e->id_espece}">{$e}</a>
+					{/foreach}
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div id="fiche">
+			<form id="ffiche">
+				<input type="hidden" name="fiche_id_espece" id="fiche_id_espece"/>
+				Espèce : <span id="fiche_nom_espece"></span><br/>
+				Nombre d'individus morts <br/>
+				<input type="text" size="3" id="fiche_nb_morts"> <br/>
+				Niveau de certitude dans l'identification des animaux morts<br/>
+				<select id="f_niveau_certitude_morts">
+					<option value="4">Très fort</option>
+					<option value="3">Fort</option>
+					<option value="2">Moyen</option>
+					<option value="1">Faible</option>
+				</select><br/>
+				Nombres d'individus vivants :<br/> <input type="text" size="3" id="fiche_nb_vivants"><br/>
+				Niveau de certitude dans l'identification des animaux vivants<br/> 
+				<select id="f_niveau_certitude_vivants">
+					<option value="4">Très fort</option>
+					<option value="3">Fort</option>
+					<option value="2">Moyen</option>
+					<option value="1">Faible</option>
+				</select><br/><br/>
+				Commentaire sur l'observation :
+				<textarea style="width:100%;" rows="4" id="fiche_commentaire"></textarea>
+				<input type="submit" value="Ajouter"/>
+			</form>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			Animaux observés
+			<div id="tableau">
+				<br/>Pour ajouter une espèce cliquez sur son nom.
+			</div>
 		</div>
 	</div>
 	{include file="__footer.tpl"}
