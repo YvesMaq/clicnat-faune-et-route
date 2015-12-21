@@ -1,34 +1,3 @@
-/*OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
-	defaultHandlerOptions: {
-		single: true,
-		double: false,
-		pixelTolerance:false,
-		stopSingle: false,
-		stopDouble: false
-	},
-
-	initialize: function(options) {
-		this.handlerOptions = OpenLayers.Util.extend({}, this.defaultHandlerOptions);
-		OpenLayers.Control.prototype.initialize.apply(this, arguments); 
-		this.handler = new OpenLayers.Handler.Click(this, {click: this.trigger}, this.handlerOptions);
-	}, 
-
-	trigger: function(e) {
-	    if (this.map.getZoom() >= 14) {
-		var pt = e.object.getLonLatFromViewPortPx(e.xy);
-		marque_point(pt.clone())
-		pt.transform(e.object.projection, e.object.displayProjection);
-		$('#f_lon').val(pt.lon);
-		$('#f_lat').val(pt.lat);
-		$('#statut_click').html("Vous pouvez passer à l'étape C");
-		$('#form-instructions').hide();
-		$('#form-saisie').show();
-	    } else {
-		$('#statut_click').html('Vous devez zoomer plus');
-	    }
-	}
-});*/
-
 function annuler(id_espece) {
 	var my_i = new Array();
 	for (var i=0;i<inventaires.length;i++) {
@@ -143,57 +112,45 @@ function init_carte(id_map) {
 		target: olMapDiv,
 		view: new ol.View({
 			center: [-6655.5402445057125, 6709968.258934638],
-			zoom: 13
+			zoom: 10
 	        })
 	});
-	view.setCenter([0, 0]);
-	view.setZoom(1);
-
-/*
-
-	var options = {
-		projection: new OpenLayers.Projection('EPSG:900913'),
-		displayProjection: new OpenLayers.Projection('EPSG:4326'),
-		units: "m",
-		numZoomLevel: 19,
-	//	maxResolution: 78271.516964,
-		maxExtent: new OpenLayers.Bounds(-20037508, -20037508, 20037508, 20037508.34)
-	};
-	imap = new OpenLayers.Map(id_map, options);
-	imap.addControl(new OpenLayers.Control.LayerSwitcher());
-	var ghyb = new OpenLayers.Layer.Google("Google Hybride", {type: google.maps.MapTypeId.HYBRID});
-	layer = new OpenLayers.Layer.Markers('Point');
-	imap.addLayers([ghyb,layer]);
-	console.log(ghyb.mapObject);
-	ghyb.mapObject.setTilt(0);
-
-	var pt = new OpenLayers.LonLat(2.80151, 49.69606);
-		
-	pt.transform(imap.displayProjection, imap.projection);
-	var z = 8;
-
-	imap.setCenter(pt, z);
-
-	imap.events.register('zoomend', null, function (obj) {
-		console.log(this.getZoom());
-		/*if (this.getZoom() < 15) {
+	carte.on('click', function (e) {
+		var zoom = e.map.getView().getZoom();
+		if (zoom < 15) {
 			$('#statut_zoom_plus').show();
 			$('#statut_zoom_ok').hide();
-			var n = 15 - this.getZoom();
-			if (n>1) $('#statut_zoom_info').html('Il reste '+n+' niveaux de zoom a traverser');
-			else $('#statut_zoom_info').html('Il reste un dernier niveau de zoom a traverser');
+		} else {
+			var pt = e.map.getCoordinateFromPixel(e.pixel);
+			// marque_point();
+			var lonlat = ol.proj.toLonLat(pt, e.map.getView().getProjection());
+			console.log(lonlat);
+			$('#f_lon').val(lonlat[0]);
+			$('#f_lat').val(lonlat[1]);
+
+			$('#statut_click').html("Vous pouvez passer à l'étape C");
+
+			$('#form-instructions').hide();
+			$('#form-saisie').show();
+		}
+	});
+	carte.on('moveend', function (e) {
+		console.log("zoom end");
+		console.log(e);
+		var zoom = e.map.getView().getZoom();
+		var n = 15 - zoom;
+		if (zoom < 15) {
+			if (n>1) 
+				$('#statut_zoom_info').html('Il reste '+n+' niveaux de zoom a traverser');
+			else 
+				$('#statut_zoom_info').html('Il reste un dernier niveau de zoom a traverser');
 		} else {
 			$('#statut_zoom_plus').hide();
 			$('#statut_zoom_ok').show();
 			$('#statut_zoom_info').html('');
-		}*/
-	//});
+		}
 
-	/*var click = new OpenLayers.Control.Click();
-	imap.addControl(click);
-	click.activate();*/
-	//return imap;
-	
+	});
 }
 
 function marque_point(p) {
