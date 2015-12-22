@@ -16,6 +16,13 @@ if (!defined('SMARTY_TEMPLATE_POINTSNOIRS'))
 
 if (!defined('SMARTY_COMPILE_POINTSNOIRS'))
 	define('SMARTY_COMPILE_POINTSNOIRS', '/tmp/smarty_pointsnoirs_compile');
+if (!define('INSTALL'))
+	define('INSTALL','clicnat');
+if (!define('CLICNAT_COLLISION_TAG'))
+	define('CLICNAT_COLLISION_TAG','71');
+if (!define('CLICNAT_POSE_TAG'))
+	define('CLICNAT_POSE_TAG','180');
+
 
 require_once(SMARTY_DIR.'Smarty.class.php');
 require_once(OBS_DIR.'utilisateur.php');
@@ -175,10 +182,57 @@ class PointsNoirs extends clicnat_smarty {
 					exit();
 				}
 				break;
+			case 'geojson' :
+				header('Content-type: application/json');
+				var_dump($this->geojson());
+				return $this->geojson();
+
 			default:
 				echo "404";
 				exit();
 		}
+	}
+
+	public function geojson() {
+		$tags = get_config()->query_nv('/clicnat/pointsnoirs/id_tag');
+		if (INSTALL == 'clicnat'){
+			$tags .=  ",".CLICNAT_COLLISION_TAG;
+			$tags .= ",".CLICNAT_POSE_TAG;
+		}
+	$sql ='	SELECT	
+		espace_point.id_espace,
+		st_x(espace_point.the_geom) as x,
+		st_y(espace_point.the_geom) as y,
+		citations.id_espece
+	FROM
+		citations,
+		observations,
+		citations_tags,
+		espace_point
+	WHERE
+		citations_tags.id_tag in ('.$tags.')
+		and citations.id_citation = citations_tags.id_citation
+		and citations.id_observation = observations.id_observation
+		and observations.id_espace = espace_point.id_espace
+		and observations.date_observation > current_date - interval \'3 year\'
+		;';
+
+		$geo = [ "type" => "FeatureCollection", "features" => [] ];
+		$q = bobs_qm()->query($this->db, 'fer_espaces_l',$sql , []);
+		while ($r = bobs_element::fetch($q)) {
+			$geo["features"][] = [
+					"type" => "Feature",
+					"geometry" => [
+						"type" => "Point",
+						"coordinates" => [(float)$r['x'], (float)$r['y']]
+					],
+					"properties" => [
+						"id_espace" => (int)$r['id_espace'],
+						"reseau" => get_espece($this->db,$r['id_espece'])->get_reseau()->id
+					]
+				];
+		}
+			return json_encode($geo);
 	}
 
 	protected function before_actu() {
