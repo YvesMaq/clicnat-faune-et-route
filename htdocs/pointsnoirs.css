@@ -187,6 +187,488 @@ img.bas-logos-picto-cg80:hover {
 	clip:			rect(0px 167px 62px 0px);
 }
 
+<<<<<<< HEAD
+.liste-espece a:visited {
+	color: blue;
+}
+.liste_espece div {
+	margin-top: 2%;
+}
+
+.liste-espece {
+	display: none;
+	margin-top: 0px;
+	height: 500px;
+	overflow: scroll;
+	background-color: white;
+}
+
+.liste_espece_accueil {
+	display: block;
+	overflow: hidden;
+	margin-top: 250px;
+	height: 160px;
+	width: 220px;
+	font-size: larger;
+	font-weight: bold;
+	padding: 40px;
+}
+.liste_espece_accuei2l {
+	display: block;
+	background-image: url('../image/plaq_commune.png');
+	background-repeat: no-repeat;
+	padding: 40px;
+}
+
+
+.colonne {
+	width: 250px;
+	max-width:250px;
+	float:left;
+	margin-right: 13px;
+}
+
+#zone_carte {
+	margin-left: 280px;
+}
+
+.colonne table {
+	border-collapse: collapse;
+}
+
+div .colonne-bloc {
+	background-color: white;
+	padding: 5px;
+	border-left: solid 3px rgb(198,229,72);
+	border-right: solid 3px rgb(198,229,72);
+}
+
+div .colonne-pied {
+	padding-bottom: 5px;
+	margin-bottom: 12px;
+	border-bottom: solid 3px rgb(198,229,72);
+}
+
+.colonne td {
+	padding: 3px;
+	cursor:pointer;
+}
+.btn_colonne {
+	font-weight: bold;
+}
+
+.colonne p {
+	font-size: 10px;
+	margin:0px;
+	padding:4px;
+}
+
+.colonne h1, .desc h1, .tvilles h1 {
+	border-radius: 0 16px 0 0;
+	-moz-border-radius: 0 16px 0 0;
+	-webkit-border-radius: 0 16px 0 0;
+	margin:0px; 
+	padding: 0.5em;
+	background-color: rgb(198,229,72);
+	color: white;
+	font-size: 20px;
+}
+.tvilles a {
+	display:block;
+	margin:0px;
+	padding:0px;
+	padding: 2px;
+}
+.tvilles a:hover {
+	background-color: rgb(198,229,72);
+	text-decoration:none;
+	color: #333;
+}
+
+#colonne_carte {
+	height: 200px;
+	border-left: solid 3px rgb(198,229,72);
+	border-right: solid 3px rgb(198,229,72);
+}
+.colonne table {
+	border-left: solid 3px rgb(198,229,72);
+	border-right: solid 3px rgb(198,229,72);
+	border-bottom: solid 3px rgb(198,229,72);
+}
+.colonne tr {
+	background-color: white;
+}
+.colonne tr:hover {
+	background-color: rgb(198,229,72);
+}
+.pointeur_auto li {
+	cursor: auto;
+}
+
+.colonne_t {
+	font-size: 12px;
+
+	
+}
+.colonne_v  {
+	text-align:center;
+	font-weight: normal;		
+}
+.bobs-table {
+	font-size: 14px;
+}
+
+.bobs-table th {
+	border: 1px solid rgb(198,229,72);
+	background-color: rgb(198,229,72);
+	color: white;
+	font-size:16px;
+}
+.bobs-table table {
+	border-collapse: collapse;
+}
+
+.bobs-table td {
+	border: 1px solid rgb(198,229,72);
+}
+
+.bobs-table tr {
+	background-color: white;
+}
+
+.bobs-table tr:hover {
+	background-color: rgb(198,229,72);
+}
+
+#root_liste_villes {
+	text-align: left;	
+}
+
+.liste-ville {
+	float:	left;
+	width: 30%;
+	border: 1px solid black;
+	text-align: left;
+	margin-left: 15px;
+}
+
+.liste-ville-scr {
+	height: 200px;
+	overflow: scroll;
+}
+
+.liste-ville h1 {
+	margin: 0px;
+	padding: 2px;
+	font-size: 20px;
+}
+.liste-ville ul {
+	list-style-image: none;
+	list-style-position: outside;
+	list-style: none;
+	margin:0px;
+	padding:0px;
+}
+
+.liste-ville li {
+	padding:3px;
+}
+.liste-ville a {
+	display:block;
+}
+.liste-ville a:hover {
+	background-color: #f5f5f5;
+}
+.liste-ville a:visited {
+	color: blue;
+} 
+
+.esp_cache {
+	/* display: none; */
+	font-size: 12px;
+	text-align: right;
+}
+
+.w_info {
+	display:none;
+}
+
+.box {
+	background-color: white;
+	border:solid 2px rgb(198,229,72);
+	margin-top: 20px;
+	margin-left: 280px;
+	padding: 20px;
+}
+
+.bloc  {
+	max-width: 684px;
+	width:48%;
+	height: 160px;	
+	float: left;
+	color: black;
+	font-weight:bold;
+}
+
+.bloc p {
+	margin: 0px;
+	padding: 5px;
+}
+
+.bloc h1 {
+	margin:0px;
+	padding:0px;
+	padding-bottom: 3px;
+	font-size: 24px;
+	border-bottom-style: none;
+}
+
+.bloc-commune {
+	background-image: url('../image/communes.png');
+	background-repeat: no-repeat;
+	background-position: left;
+}
+
+.bloc-espece {
+	background-image: url('../image/especes.png');
+	background-repeat: no-repeat;
+	background-position: right;
+	margin-left: 10px;
+}
+
+.bloc-carte-communes {
+	background-image: url('../image/carte_communes.png');
+	background-repeat: no-repeat;
+	background-position: left;
+}
+
+.bloc-carte-communes a {
+	display: block;
+	margin-left: 120px;
+	font-size: 24px;
+	margin-top: 10px;
+}
+
+.bloc-commune-cont {
+	margin-left: 120px;
+	height: 160px;
+}
+
+.definitions table {
+	border-collapse:collapse;
+	width:80%;
+	margin-left:10%;	
+}
+.definitions td {
+	border: solid 1px black;
+	padding: 5px;
+	vertical-align: top;
+}
+
+.b-a-menu {
+	padding:8px;
+	clear:both; 
+	background-color: rgb(70,63,50);
+}
+.b-a-menu ul {
+	margin: 0px;
+	list-style-type: none;
+	padding: 0px;
+}
+.b-a-menu li {
+	display:inline;
+	background-color: rgb(224,224,224);
+	padding: 3px;
+}
+.b-a-menu a {
+	font-weight: bold;
+	color: black;
+}
+.b-a-menu a:hover {
+	text-decoration: none;
+}
+
+.b-a-menu li:hover {
+	background-color: white;
+}
+h1.titre_liste_rouge {
+	padding: 5px; 
+	background-color: rgb(198,229,72); 
+	color:white;
+}
+
+div.info_liste_rouge {
+	float: right;
+	padding: 8px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: rgb(198,229,72);
+	width: 230px;
+}
+
+.legende {
+	display:block;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+	font-weight: bold;
+	color: white;
+}
+   
+div.pas_de_carte_dispo {
+	height:100%;
+	width:100%;
+	float:right;
+	border-style:solid;
+	border-width:2px;
+	padding: 10px;
+	margin-left:10px;
+	border-color:rgb(198,229,72);
+	background-color:white;
+}
+
+.ui-widget {
+	font-size: 0.8em;
+	text-align: left;
+}
+
+/* le compteur sur la page partenaires */
+.compteur {
+	background-color: black;
+	color: white;
+	padding:3px;
+	font-family: monospace;
+	font-weight: bold;
+	font-size: larger;
+}
+
+/* les photos qui défilent sur la fiche espèce */
+.carousel ul, .carousel li {
+	margin:0;
+	height: 187px;
+	max-height: 187px;
+	overflow: hidden;
+	list-style:none;
+	padding:0px;
+}
+
+.carousel li {
+	float:left;
+	margin:0px;
+	padding:0px;
+}
+
+/* liste d'espèces - liste rouge */
+.esp {
+	padding-bottom: 6px;
+	width: 25%;
+	min-height: 60px;
+	margin: 10px;
+	float: left;
+	padding: 5px;
+	border: solid 3px rgb(198,229,72);
+	background-color: white;
+	border-radius: 0em 2em;	
+	-moz-border-radius: 0 2em;
+	-webkit-border-radius: 0 25px 0px 25px;
+}
+
+.esp:hover {
+	background-color: #f0f0f0;
+}
+.esp a {
+	display:block;
+}
+.esp a:hover {
+	text-decoration: none;
+}
+
+.lr_statut {
+	font-size:larger;
+	font-weight:bold;
+	float:right;
+	cursor:pointer;
+	padding:5px;
+}
+
+.tvilles table {
+	border-collapse:collapse;
+	border-style:solid;
+	border-color:rgb(198,229,72);
+	border-width:1px;
+	width:100%;
+}
+.tvilles th {
+	background-color:rgb(198,229,72);
+	color:white;
+}
+.tvilles td  {
+	vertical-align:top;	
+	overflow:scroll;
+	padding:2px;
+	background-color:white;
+}
+.tvilles_z  {
+	height:400px;
+	overflow:scroll; 	
+}
+
+.desc {
+	margin-left: 4px;
+}
+
+#bloc-a-pre {
+	float: left;
+	padding: 4px;
+	text-align: justify;
+	width: 600px;
+	height: 300px;
+	overflow: auto;
+	margin: 15px;
+	font-size: 14px;
+}
+#bloc-a, #bloc-b {
+	background-color: white;
+	border-color: rgb(156,39,39);
+	border-width: 2px;
+	border-style: solid;
+	margin-bottom: 10px;
+}
+#bloc-a h1, .bloc-actu h1 {
+	font-size: 22px;
+	border-bottom-color: rgb(156,39,39) !important;
+}
+#bloc-a-image {
+	margin: 15px;
+	float: left;
+	width: 300px;
+	height: 300px;
+	background-repeat: no-repeat;
+	background-color: white;
+}
+#bloc-b-carte-in {
+	width: 600px;
+	height: 450px;
+}
+#bloc-b-carte {
+	width: 600px;
+	height: 450px;
+	margin: 15px;
+	background-color: #efefef;
+	float:left;
+}
+
+#bloc-b-form {
+	width: 300px;
+	height: 450px;
+	margin: 15px;
+	background-color: #eeeeee;
+	float: left;
+	overflow:scroll;
+}
+
+=======
+>>>>>>> b96470a5e23b1404ddf2a3989039a530a7ff2ba1
 #choix_especes {
 	background-color:white;
 	border-color: rgb(156,39,39);

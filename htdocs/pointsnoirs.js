@@ -227,9 +227,14 @@ function actualise_tableau() {
 	$('#tableau').append("<br/><a class='btn btn-primary' href=javascript:terminer();>Envoyer vos observations</a><br/>");
 	$('#tableau').append("Vous pouvez aussi ajouter une autre espèce en cliquant dans la liste à gauche");
 }
-
+function page_complements_init(){
+	 page_accueil_maj_fond();
+}
+	
 function page_actu_init(){
-	actualise_tableau();
+	 page_accueil_maj_fond();
+	 var articles = $('#bloc-actu').find('article');
+	 $('.bloc-actu-pre').has('img').height('183px');
 }
 
 function page_accueil_init() {
