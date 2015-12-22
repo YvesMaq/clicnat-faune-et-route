@@ -184,7 +184,6 @@ class PointsNoirs extends clicnat_smarty {
 				break;
 			case 'geojson' :
 				header('Content-type: application/json');
-				var_dump($this->geojson());
 				return $this->geojson();
 
 			default:
@@ -200,7 +199,7 @@ class PointsNoirs extends clicnat_smarty {
 			$tags .= ",".CLICNAT_POSE_TAG;
 		}
 	$sql ='	SELECT	
-		espace_point.id_espace,
+		citations.id_citation,
 		st_x(espace_point.the_geom) as x,
 		st_y(espace_point.the_geom) as y,
 		citations.id_espece
@@ -227,7 +226,7 @@ class PointsNoirs extends clicnat_smarty {
 						"coordinates" => [(float)$r['x'], (float)$r['y']]
 					],
 					"properties" => [
-						"id_espace" => (int)$r['id_espace'],
+						"id_citation" => (int)$r['id_citation'],
 						"reseau" => get_espece($this->db,$r['id_espece'])->get_reseau()->id
 					]
 				];
