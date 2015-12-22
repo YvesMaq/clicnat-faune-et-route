@@ -16,13 +16,16 @@ if (!defined('SMARTY_TEMPLATE_POINTSNOIRS'))
 
 if (!defined('SMARTY_COMPILE_POINTSNOIRS'))
 	define('SMARTY_COMPILE_POINTSNOIRS', '/tmp/smarty_pointsnoirs_compile');
-if (!define('INSTALL'))
+if (!defined('INSTALL'))
 	define('INSTALL','clicnat');
-if (!define('CLICNAT_COLLISION_TAG'))
+if (!defined('CLICNAT_COLLISION_TAG'))
 	define('CLICNAT_COLLISION_TAG','71');
-if (!define('CLICNAT_POSE_TAG'))
+if (!defined('CLICNAT_POSE_TAG'))
 	define('CLICNAT_POSE_TAG','180');
-
+if (!defined('FAUNE_ET_ROUTE_ENQUETE'))
+	define('FAUNE_ET_ROUTE_ENQUETE', 8);
+if (!defined('FAUNE_ET_ROUTE_ENQUETE_VERSION'))
+	define('FAUNE_ET_ROUTE_ENQUETE_VERSION', 1);
 
 require_once(SMARTY_DIR.'Smarty.class.php');
 require_once(OBS_DIR.'utilisateur.php');
@@ -30,6 +33,7 @@ require_once(OBS_DIR.'espece.php');
 require_once(OBS_DIR.'rss.php');
 require_once(OBS_DIR.'smarty.php');
 require_once(OBS_DIR.'docs.php');
+require_once(OBS_DIR.'enquetes.php');
 require_once(DB_INC_PHP);
 
 class PointsNoirs extends clicnat_smarty {
@@ -83,20 +87,20 @@ class PointsNoirs extends clicnat_smarty {
 				$tag_point_noir = get_config()->query_nv('/clicnat/pointsnoirs/id_tag');
 				$tag_mort = get_config()->query_nv('/clicnat/pointsnoirs/id_tag_mort');
 				
-				$id_espace = bobs_espace_point::insert($this->db, array(
+				$id_espace = bobs_espace_point::insert($this->db, [
 					'id_utilisateur' => $id_utilisateur,
 					'reference' => '',
 					'nom' => '',
 					'x' => $_GET['lon'],
 					'y' => $_GET['lat']
-				));
+				]);
 
-				$id_obs = bobs_observation::insert($this->db, array(
+				$id_obs = bobs_observation::insert($this->db, [
 					'id_utilisateur' => $id_utilisateur,
 					'date_observation' => $_GET['date'],
 					'id_espace' => $id_espace,
 					'table_espace' => 'espace_point'
-				));
+				]);
 
 				$observation = new bobs_observation($this->db, $id_obs);
 				if (!empty($_GET['heure_h']))
@@ -122,16 +126,16 @@ class PointsNoirs extends clicnat_smarty {
 					$this->sess_store($k, $_GET[$k]);
 				
 				$observation->add_observateur($id_utilisateur);
-
+				$enq = new clicnat_enquete($this->db, FAUNE_ET_ROUTE_ENQUETE);
+				$enq_ver = $enq->version(FAUNE_ET_ROUTE_ENQUETE_VERSION);
 				for ($x=0;$x<10;$x++) {
 					if (array_key_exists("id_espece_$x", $_GET)) {
+						$citation = null;
 						if ($_GET["n_vivant_$x"] > 0) {
 							$id_citation = $observation->add_citation($_GET["id_espece_$x"]);
 							$citation = new bobs_citation($this->db, $id_citation);
 							$citation->set_effectif($_GET["n_vivant_$x"]);
 							$citation->set_indice_qualite($_GET["indice_q_vivant_$x"]);
-							$citation->set_commentaire($_GET["commentaire_0"]);
-							$citation->ajoute_tag($tag_point_noir);
 							$citation->ajoute_commentaire('info', $id_utilisateur,$comtr2);
 						}
 						if ($_GET["n_mort_$x"] > 0) {
@@ -139,14 +143,17 @@ class PointsNoirs extends clicnat_smarty {
 							$citation = new bobs_citation($this->db, $id_citation);
 							$citation->set_effectif($_GET["n_mort_$x"]);
 							$citation->set_indice_qualite($_GET["indice_q_mort_$x"]);
-							$citation->set_commentaire($_GET["commentaire_0"]);
-							$citation->ajoute_tag($tag_point_noir);
 							$citation->ajoute_tag($tag_mort);
 							$citation->ajoute_commentaire('info', $id_utilisateur,$comtr2);
 						}
+						if (!is_null($citation)) {
+							$citation->set_commentaire($_GET["commentaire_0"]);
+							$citation->ajoute_tag($tag_point_noir);
+							$enq_res = $enq_ver->resultat_enregistre($citation->id_citation, $_GET);
+							$citation->set_enquete_resultat($enq_res);
+						}
 					}
 				}
-
 				$observation->send();
 				header('Location: ?p=complements');
 				$_SESSION['id_observation'] = $observation->id_observation;
@@ -184,9 +191,8 @@ class PointsNoirs extends clicnat_smarty {
 				break;
 			case 'geojson' :
 				header('Content-type: application/json');
-				var_dump($this->geojson());
-				return $this->geojson();
-
+				echo $this->geojson();
+				break;
 			default:
 				echo "404";
 				exit();
