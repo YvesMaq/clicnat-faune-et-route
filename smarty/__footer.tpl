@@ -3,7 +3,6 @@
 			{include file=pied.tpl}
 		</div>
 	</footer>
-</div>
 {literal}
 <!-- Piwik -->
 <script type="text/javascript">
