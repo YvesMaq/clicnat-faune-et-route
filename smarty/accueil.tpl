@@ -56,7 +56,7 @@
 					<p id="statut_zoom_plus">Vous devez zoomer plus pour passer au point B,
 					vous pouvez utiliser la molette de la souris.</p>
 					<p id="statut_zoom_info"></p>
-					<p id="statut_zoom_ok" style="display:none;">Vous pouvez passer a l'étape B</p>
+					<div id="statut_zoom_ok" class="alert alert-success" style="display:none;">Vous pouvez passer a l'étape B</div>
 					<p><b>B</b> Cliquer sur le lieu précis de l'observation.</p>
 					<p id="statut_click"></p>
 					<p><b>C</b> Compléter et envoyer le formulaire.</p>

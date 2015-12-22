@@ -186,9 +186,10 @@ function init_carte(id_map, install) {
 		var n = 15 - zoom;
 		if (zoom < 15) {
 			if (n>1) 
-				$('#statut_zoom_info').html('Il reste '+n+' niveaux de zoom a traverser');
+				$('#statut_zoom_info').html('<div class="alert alert-danger">Il reste '+n+' niveaux de zoom a traverser</div>');
 			else 
-				$('#statut_zoom_info').html('Il reste un dernier niveau de zoom a traverser');
+				$('#statut_zoom_info').html('<div class="alert alert-warning">Il reste un dernier niveau de zoom a traverser</div>');
+			$('#statut_zoom_ok').hide();
 		} else {
 			$('#statut_zoom_plus').hide();
 			$('#statut_zoom_ok').show();
