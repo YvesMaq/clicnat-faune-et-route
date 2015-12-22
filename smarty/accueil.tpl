@@ -71,7 +71,7 @@
 					<label for="f_date">Date d'observation</label><br/>
 					<input type="text" name="date" id="f_date" size="10" required="true"/><br/><br/>
 					<label for="f_heure_h">Heure de l'observation</label><br/>
-					<input type="text" size="2" maxlength=2" name="heure_h" if="f_heure_h"/>h<input type="text" size="2" maxlength=2" name="heure_m" id="f_heure_m"/><br/><br/>
+					<input type="text" size="2" maxlength="2" name="heure_h" if="f_heure_h"/>h<input type="text" size="2" maxlength="2" name="heure_m" id="f_heure_m"/><br/><br/>
 
 					<label for="f_nom">Nom</label><br/>
 					<input type="text" name="nom" id="f_nom" value="{$sess_nom}" required="true"/><br/>
