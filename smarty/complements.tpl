@@ -1,11 +1,12 @@
 {include file="__entete.tpl"}
-	<form enctype="multipart/form-data" action="?p=complements" method="post">
+	<form enctype="multipart/form-data" action="?p=complements" method="post" class="col-xs-12">
 		<input type="hidden" value="1" name="a"/>
 		<h1>Compléments d'observations</h1>
 		<h1>Observateurs</h1>
 		Si vous souhaitez associer d'autres personnes à cette observation, indiquez leur nom :<br/>
 		<textarea name="observateurs_supplementaires" style="width:100%; height: 100px;"></textarea>
 		<div style="height:20px;"></div>
+		<div class="col-xs-12">
 		<h1>Photos</h1>
 		{foreach from=$obs->get_citations() item=c}
 		<div>
@@ -13,6 +14,7 @@
 		</div>
 		{/foreach}
 		<input type="submit" value="Envoyer"/>
+		</div>
 	</form>
 	{include file="__footer.tpl"}
 	{literal}

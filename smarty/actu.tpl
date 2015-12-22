@@ -47,7 +47,7 @@
 		<section id="bloc-a">
 			<div class="bloc-actu row">
 			{foreach from=$actus item=actu}	
-			<article class="row">
+			<article class="col-xs-12">
 				<h1><a href="{$actu->lien}">{$actu->titre}</a></h1>
 				<div class="bloc-actu-pre row"><a href="{$actu->lien}">{$actu->description}</a></div>
 				<div class="bloc-actu-suite row"><a href="{$actu->lien}">lire l'article complet</a></div>

@@ -25,7 +25,6 @@
 	{foreach from=$msgs item=msg}
 		<p>{$msg}</p>
 	{/foreach}
-</div>
 <div class="container" style="width: 1000px; margin-left:auto; margin-right: auto;">
 	<header class="row">
 		<div class="col-lg-12">
