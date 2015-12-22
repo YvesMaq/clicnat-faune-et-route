@@ -109,6 +109,7 @@ li#banniere-current {
 	height:100px;
 	background-repeat: repeat-x;
 }
+
 div#sous-titre {
 	float:right;
 	padding: 3px;
@@ -119,6 +120,32 @@ div#sous-titre {
 	font-family: arial;
 	font-style: italic;
 	font-weight: bold;
+}
+#bloc-a article{
+	padding-left:25px;
+	padding-right:25px;
+}
+.bloc-actu a{
+	text-decoration:none;
+}
+.bloc-actu h2 a{
+	color:black;
+}
+.bloc-actu-pre a:not(:last-of-type){
+	color:black;
+}
+.bloc-actu-suite a{
+	color:white;
+}
+.bloc-actu-pre{
+	margin-top:20px;
+}
+.bloc-actu-pre img{
+	padding-right:10px;
+}
+.bloc-actu-suite{
+	float:right;
+	font-style:italic;
 }
 #logos {
 	text-align: center;
