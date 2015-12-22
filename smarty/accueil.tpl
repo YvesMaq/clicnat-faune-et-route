@@ -19,18 +19,13 @@
 <script src="https://ssl.picardie-nature.org/statique/jquery-ui-1.11.4/jquery-ui.min.js"></script>
 <script src="https://ssl.picardie-nature.org/statique/OpenLayers-3.11.2/ol.js"></script>
 <script src="https://ssl.picardie-nature.org/statique/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+<script src="https://ssl.picardie-nature.org/statique/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
 <script src="pointsnoirs.js"></script>
-<div style="clear:both;">
+<script src="datepicker-fr.js"></script>
 	{foreach from=$msgs item=msg}
 		<p>{$msg}</p>
 	{/foreach}
 </div>
-<div>
-	<div id="choix_especes" style="display:none;">
-	</div>
-</div>
-
-
 <div class="container" style="width: 1000px; margin-left:auto; margin-right: auto;">
 	{include file="__entete.tpl"}
 	{if $msg_ok}<div id="ok" style="font-size: 16px;color:green;text-align:center;">Observation enregistrée, Merci !</div>{/if}
@@ -91,12 +86,12 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-12">
+		<div class="col-lg-12 saisieinfo" style="display:none;">
 			<h1>Informations</h1>
 		</div>
 	</div>
 	<div class="row">
-		<div id="form-saisie" style="display:block;">
+		<div id="form-saisie" style="display:none;" class="saisieinfo">
 			<form id="fa">
 				<div class="col-lg-6">
 					<input type="hidden" name="lat" id="f_lat"/>
@@ -148,12 +143,12 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-12">
+		<div class="col-lg-12 obsespeces" style="display:none;">
 			<h1>Espèce observée</h1>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-4">
+		<div class="col-lg-4 obsespeces" style="display:none;">
 			<div id="groupes">
 				Chercher une espèce
 				<div class="groupe" id="autres" style="margin-bottom:15px;">
@@ -190,35 +185,37 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-4">
+		<div class="col-lg-4 obsespeces" style="display:none;">
 			<div id="fiche">
-			<form id="ffiche">
-				<input type="hidden" name="fiche_id_espece" id="fiche_id_espece"/>
-				Espèce : <span id="fiche_nom_espece"></span><br/>
-				Nombre d'individus morts <br/>
-				<input type="text" size="3" id="fiche_nb_morts"> <br/>
-				Niveau de certitude dans l'identification des animaux morts<br/>
-				<select id="f_niveau_certitude_morts">
-					<option value="4">Très fort</option>
-					<option value="3">Fort</option>
-					<option value="2">Moyen</option>
-					<option value="1">Faible</option>
-				</select><br/>
-				Nombres d'individus vivants :<br/> <input type="text" size="3" id="fiche_nb_vivants"><br/>
-				Niveau de certitude dans l'identification des animaux vivants<br/> 
-				<select id="f_niveau_certitude_vivants">
-					<option value="4">Très fort</option>
-					<option value="3">Fort</option>
-					<option value="2">Moyen</option>
-					<option value="1">Faible</option>
-				</select><br/><br/>
-				Commentaire sur l'observation :
-				<textarea style="width:100%;" rows="4" id="fiche_commentaire"></textarea>
-				<input type="submit" value="Ajouter"/>
-			</form>
+				<form id="ffiche">
+					<input type="hidden" name="fiche_id_espece" id="fiche_id_espece"/>
+					<label for="fiche_nom_espece">Espèce :</label> <span id="fiche_nom_espece"></span><br/>
+					<label for="fiche_nb_morts">Nombre d'individus morts</label> <br/>
+					<input type="text" size="3" id="fiche_nb_morts"> <br/>
+					<label for="f_niveau_certitude_morts">Niveau de certitude dans l'identification des animaux morts</label><br/>
+					<select id="f_niveau_certitude_morts">
+						<option value="4">Très fort</option>
+						<option value="3">Fort</option>
+						<option value="2">Moyen</option>
+						<option value="1">Faible</option>
+					</select><br/>
+					<label for="fiche_nb_vivants">Nombres d'individus vivants :<br/> <input type="text" size="3" id="fiche_nb_vivants"></label><br/>
+					<label for="f_niveau_certitude_vivants">Niveau de certitude dans l'identification des animaux vivants</label><br/> 
+					<select id="f_niveau_certitude_vivants">
+						<option value="4">Très fort</option>
+						<option value="3">Fort</option>
+						<option value="2">Moyen</option>
+						<option value="1">Faible</option>
+					</select><br/><br/>
+					<label for="fiche_commentaire">
+						Commentaire sur l'observation :
+					</label>
+					<textarea style="width:100%;" rows="4" id="fiche_commentaire"></textarea>
+					<input type="submit" value="Ajouter"/>
+				</form>
 			</div>
 		</div>
-		<div class="col-lg-4">
+		<div class="col-lg-4 obsespeces" style="display:none;">
 			Animaux observés
 			<div id="tableau">
 				<br/>Pour ajouter une espèce cliquez sur son nom.
@@ -227,6 +224,6 @@
 	</div>
 	{include file="__footer.tpl"}
 	{literal}
-<script>$(document).ready(function () { page_accueil_init();});</script>{/literal}
+	<script>$(document).ready(function () { page_accueil_init();});</script>{/literal}
 	</body>
 </html>

@@ -44,7 +44,6 @@ function set_fiche_id_espece_nom(id,nom) {
 	$('#fiche_nb_vivants').val('');
 	$('#fiche_commentaire').val('');
 	$('#fiche').show();
-	//$('#tableau').hide();
 }
 
 function Inventaire(id_espece,nom,nb_mort,nb_vivant,indice_q_mort,indice_q_vivant,commentaire) {
@@ -92,29 +91,38 @@ function init_carte(id_map) {
 			imagerySet: styles[2]
 		})
 	});
-	var vector = new ol.layer.Vector({
-		// source: new ol.source.GeoJSON({
-		//	url: 'data/geojson/countries.geojson',
-		//	projection: 'EPSG:3857'
-		// }),
-		style: new ol.style.Style({ 
-			fill: new ol.style.Fill({ color: 'rgba(255, 255, 255, 0.6)' }),
-			stroke: new ol.style.Stroke({ color: '#319FD3', width: 1 }) 
+	// layer est une variable globale
+	var style = new ol.style.Style({ 
+		image: new ol.style.Circle({
+			radius: 6,
+			fill: new ol.style.Fill({ color: '#aeff43' }),
+			stroke: new ol.style.Stroke({ color: '#bfff89', width: 2 }) 
 		})
 	});
+
+	layer = new ol.layer.Vector({
+		source: new ol.source.Vector(),
+		style: style,
+		attribution: new ol.Attribution({html: '<a href="http://www.clicnat.fr/">Clicnat</a>'})
+	});
+
 	var view = new ol.View({
 		// make sure the view doesn't go beyond the 22 zoom levels of Google Maps
 		maxZoom: 19
 	});
+
 	var olMapDiv = document.getElementById('olmap');
+
 	carte = new ol.Map({
-		layers: [bing],
+		layers: [bing,layer],
 		target: olMapDiv,
 		view: new ol.View({
-			center: [-6655.5402445057125, 6709968.258934638],
+			center: [256066.43341247435, 6429073.462702302],
+			/* center: [-85984.49084942153, 6118662.690836201], // Mayenne */
 			zoom: 10
 	        })
 	});
+
 	carte.on('click', function (e) {
 		var zoom = e.map.getView().getZoom();
 		if (zoom < 15) {
@@ -122,21 +130,47 @@ function init_carte(id_map) {
 			$('#statut_zoom_ok').hide();
 		} else {
 			var pt = e.map.getCoordinateFromPixel(e.pixel);
-			// marque_point();
+			marque_point(pt);
 			var lonlat = ol.proj.toLonLat(pt, e.map.getView().getProjection());
-			console.log(lonlat);
 			$('#f_lon').val(lonlat[0]);
 			$('#f_lat').val(lonlat[1]);
 
 			$('#statut_click').html("Vous pouvez passer à l'étape C");
 
-			$('#form-instructions').hide();
-			$('#form-saisie').show();
+			$('.saisieinfo').css('display', 'block');
+			$('#f_date').focus();
+			$('#fa').submit(function (event) {
+				event.preventDefault();
+				try {
+					var elems = $(this).children("[name]");
+					for (var i=0; i<elems.length; i++) {
+						switch ($(elems[i]).attr('name')) {
+							case 'nom':
+							case 'prenom':
+							case 'email':
+							case 'ville':
+							case 'date':
+								var v = $(elems[i]).val();
+								if (v.length == 0) {
+									alert('Le champ '+$(elems[i]).attr('name')+' est obligatoire');
+									return false;
+								}
+								break;
+						}
+					}
+				} catch (e) {
+					alert("Une erreur a bloqué l'envoi du formulaire");
+					return false;
+				}
+				$('.obsespeces').css('display', 'block');
+				$('#recherche_esp').focus();
+				return false;
+			});
+
+
 		}
 	});
 	carte.on('moveend', function (e) {
-		console.log("zoom end");
-		console.log(e);
 		var zoom = e.map.getView().getZoom();
 		var n = 15 - zoom;
 		if (zoom < 15) {
@@ -149,46 +183,22 @@ function init_carte(id_map) {
 			$('#statut_zoom_ok').show();
 			$('#statut_zoom_info').html('');
 		}
-
 	});
 }
 
 function marque_point(p) {
-	for (var i=0; i<layer.markers.length; i++)
-		layer.removeMarker(layer.markers[i]);
-	var width = 32;
-	var height = 37;
-	var size = new OpenLayers.Size(width, height);
-	var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
-	var icon = new OpenLayers.Icon('image/panoramic.png', size, offset);
-	var marqueur = new OpenLayers.Marker(p, icon);
-	layer.addMarker(marqueur);
-
-	return p;
+	var feature = new ol.Feature({
+		geometry: new ol.geom.Point(p),
+	    	name: 'Point observation'
+	});
+	var source = layer.getSource();
+	source.clear();
+	source.addFeature(feature);
+	feature.changed();
 }
 
 function page_accueil_fermer_forms() {
 	$('.formulaire').hide();
-}
-
-function page_accueil_maj_image() {
-	var images = [
-		'image/illustration_a.jpg',
-		'image/illustration_b.jpg',
-		'image/illustration_c.jpg',
-		'image/illustration_d.jpg',
-		'image/illustration_e.jpg',
-		'image/illustration_f.jpg',
-		'image/illustration_g.jpg',
-		'image/illustration_h.jpg',
-		'image/illustration_i.jpg',
-		'image/illustration_j.jpg',
-		'image/illustration_k.jpg'
-	];
-	page_accueil_glob_img_pos = (page_accueil_glob_img_pos+1)%images.length;
-	var url = "url(\""+images[page_accueil_glob_img_pos]+"\")";
-	$('#bloc-a-image').css('background-image', url);
-	setTimeout("page_accueil_maj_image()", 8000);
 }
 
 var img_fond = 0;
@@ -199,18 +209,6 @@ function page_accueil_maj_fond() {
 	setTimeout("page_accueil_maj_fond()", 15000);
 }
 
-function __page_accueil_maj_fond() {
-	var elems = $('.banniere_fond');
-	for (var i=0; i<elems.length; i++) {
-		var e = $(elems[i]);
-		if (e.hasClass('banniere_fond_visible')) {
-			e.removeClass('banniere_fond_visible');
-			$(elems[(i+1)%elems.length]).addClass('banniere_fond_visible');
-			break;
-		}
-	}
-	setTimeout("page_accueil_maj_fond()", 15000);
-}
 var page_accueil_glob_img_pos = 0;
 var carte;
 var layer;
@@ -228,9 +226,6 @@ function actualise_tableau() {
 
 	$('#tableau').append("<br/><a class='btn btn-primary' href=javascript:terminer();>Envoyer vos observations</a><br/>");
 	$('#tableau').append("Vous pouvez aussi ajouter une autre espèce en cliquant dans la liste à gauche");
-
-	//$('#fiche').hide();
-	//$('#tableau').show();
 }
 
 function page_actu_init(){
@@ -239,7 +234,6 @@ function page_actu_init(){
 
 function page_accueil_init() {
 	page_accueil_maj_fond();
-	page_accueil_maj_image();
 	carte = init_carte('bloc-b-carte-in');
 
 	$.datepicker.setDefaults($.datepicker.regional['fr']);
@@ -248,35 +242,8 @@ function page_accueil_init() {
 	d.datepicker("option","fr");
 	$('.carousel').carousel();
 
-	$('#fa').submit(function () {
-		try {
-			var elems = $(this).children("[name]");
-			for (var i=0; i<elems.length; i++) {
-				switch ($(elems[i]).attr('name')) {
-					case 'nom':
-					case 'prenom':
-					case 'email':
-					case 'ville':
-					case 'date':
-						var v = $(elems[i]).val();
-						if (v.length == 0) {
-							alert('Le champ '+$(elems[i]).attr('name')+' est obligatoire');
-							return false;
-						}
-						break;
-				}
-			}
-		} catch (e) {
-			alert("Une erreur a bloqué l'envoi du formulaire");
-			return false;
-		}
-
-		$('#choix_especes').show();
-		return false;
-	});
-
-	$('#ffiche').submit(function () {
-		console.log('va enregistrer');
+	$('#ffiche').submit(function (event) {
+		event.preventDefault();
 		try {
 			var iv = new Inventaire(
 				$('#fiche_id_espece').val(),
@@ -287,12 +254,11 @@ function page_accueil_init() {
 				$('#f_niveau_certitude_vivants').val(),
 				$('#fiche_commentaire').val()
 			);
-			console.log(iv);
 			if (iv.nb_mort == "" && iv.nb_vivant == "") {
 				alert('Effectifs vides');
 				return false;
 			}
-			console.log('ok');
+			$('#fiche').hide();
 			inventaires.push(iv);
 			actualise_tableau();
 		} catch (e) {
