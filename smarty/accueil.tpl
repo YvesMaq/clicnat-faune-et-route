@@ -20,6 +20,7 @@
 			</div>
 		</div>
 		<div class="col-lg-8">
+				{if $install eq 'picnat'}
 				<h1>La faune sauvage sur les routes de Picardie</h1>
 				La faune a des besoins territoriaux vitaux et se déplace entre ces territoires,
 				saisonnièrement pour la reproduction comme les amphibiens ou quotidiennement pour
@@ -34,6 +35,12 @@
 				lorsqu'il le sera possible des mesures de protection (crapauduc, écuroduc...).<br/><br/>
 				Si vous souhaitez des renseignements sur cette enquête, contactez Virginie au 03.62.72.22.57
 				ou par mail : virginie.coffinet@picardie-nature.org.
+				{/if}
+				{if $install eq 'mayenne'}
+				<h1>La faune sauvage sur les routes de Mayenne</h1>
+				<p>periculorum communium traxit. et instabat ut eum quoque cum tribunis et aliis pluribus ad comitatum imperatoris vinctum perduceret: quo percitus ille exitio urgente abrupto ferro eundem adoritur Paulum. et quia languente dextera, letaliter ferire non potuit, iam districtum mucronem in proprium latus inpegit. hocque deformi genere mortis excessit e vita iustissimus rector ausus miserabiles casus levare multorum.</p>
+				<p>Utque aegrum corpus quassari etiam levibus solet offensis, ita animus eius angustus et tener, quicquid increpuisset, ad salutis suae dispendium existimans factum aut cogitatum, insontium caedibus fecit victoriam luctuosam.</p>
+				{/if}
 		</div>
 	</div>
 	<div class="row">
@@ -195,6 +202,13 @@
 	</div>
 	{include file="__footer.tpl"}
 	{literal}
-	<script>$(document).ready(function () { page_accueil_init();});</script>{/literal}
+	<script>
+		$(document).ready(function () {
+			// {/literal}
+			page_accueil_init("{$install}");
+			// {literal}
+		});
+		</script>{/literal}
 	</body>
 </html>
+<!-- {$install} -->

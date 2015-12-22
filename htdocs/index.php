@@ -1,5 +1,6 @@
 <?php
-require_once('/etc/baseobs/config.php');
+if (file_exists('config.php')) require_once('config.php');
+else require_once('/etc/baseobs/config.php');
 
 session_start();
 
@@ -17,7 +18,7 @@ if (!defined('SMARTY_TEMPLATE_POINTSNOIRS'))
 if (!defined('SMARTY_COMPILE_POINTSNOIRS'))
 	define('SMARTY_COMPILE_POINTSNOIRS', '/tmp/smarty_pointsnoirs_compile');
 if (!defined('INSTALL'))
-	define('INSTALL','clicnat');
+	define('INSTALL','picnat');
 if (!defined('CLICNAT_COLLISION_TAG'))
 	define('CLICNAT_COLLISION_TAG','71');
 if (!defined('CLICNAT_POSE_TAG'))
@@ -43,6 +44,7 @@ class PointsNoirs extends clicnat_smarty {
 	const mammiferes = '4643,195,837,924,176,1074,1061,920,209,839,935,697';
 	const oiseaux = '577,891,586,310,311,864,324';
 	const elem_a_enregistrer = 'nom,prenom,structure,adresse,ville,tel,email,diff_ok,particip_ok,code_postal';
+	const ins_c_requis = "nom,prenom,email,ville";
 
 	private function sess_store($k, $v) {
 		$_SESSION["pointsnoirs_$k"] = $v;
@@ -201,7 +203,7 @@ class PointsNoirs extends clicnat_smarty {
 
 	public function geojson() {
 		$tags = get_config()->query_nv('/clicnat/pointsnoirs/id_tag');
-		if (INSTALL == 'clicnat'){
+		if (INSTALL == 'picnat'){
 			$tags .=  ",".CLICNAT_COLLISION_TAG;
 			$tags .= ",".CLICNAT_POSE_TAG;
 		}
@@ -269,18 +271,18 @@ class PointsNoirs extends clicnat_smarty {
 		$this->assign('msg_ok', array_key_exists('eok', $_GET));
 	}
 
-	const ins_c_requis = "nom,prenom,email,ville";
 	public function display($template) {
 		$f = implode('/', array($this->template_dir, $template));
 		if (!file_exists($f)) throw new Exception('404');
 		$this->assign_by_ref('msgs', $this->msgs);
-		$this->assign('clegmap', get_config()->query_nv('/clicnat/clegooglemap[@id="pointsnoirs"]'));
-		$q_jslibs = array('openlayers','proj4js','jquery','jquery-ui','jquery-ui-datefr');
-		$jslibs = array();
-		foreach ($q_jslibs as $qlib) {
-			$jslibs[] = get_config()->query_nv("/clicnat/jslib[@lib=\"$qlib\"]");
-		}
-		$this->assign_by_ref('jslibs', $jslibs);
+		//$this->assign('clegmap', get_config()->query_nv('/clicnat/clegooglemap[@id="pointsnoirs"]'));
+		//$q_jslibs = array('openlayers','proj4js','jquery','jquery-ui','jquery-ui-datefr');
+		//$jslibs = array();
+		//foreach ($q_jslibs as $qlib) {
+		//	$jslibs[] = get_config()->query_nv("/clicnat/jslib[@lib=\"$qlib\"]");
+		//}
+		//$this->assign_by_ref('jslibs', $jslibs);
+		$this->assign('install', INSTALL);
 		return parent::display($template);
 	}
 }

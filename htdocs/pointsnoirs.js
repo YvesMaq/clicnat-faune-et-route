@@ -81,7 +81,7 @@ function Inventaire(id_espece,nom,nb_mort,nb_vivant,indice_q_mort,indice_q_vivan
 	}
 }
 
-function init_carte(id_map) {
+function init_carte(id_map, install) {
 	var styles = [ 'Road', 'Aerial', 'AerialWithLabels', 'collinsBart', 'ordnanceSurvey' ];
 	var bing = new ol.layer.Tile({ 
 		visible: true,
@@ -112,14 +112,25 @@ function init_carte(id_map) {
 	});
 
 	var olMapDiv = document.getElementById('olmap');
-
+	xorg = false;
+	if (install == 'picnat') {
+		xorg = [256066.43341247435, 6429073.462702302];
+		zoom = 10;
+	} else if (install == 'mayenne') {
+		xorg = [-85984.49084942153, 6118662.690836201];
+		zoom = 10;
+	}
+	if (!xorg) {
+		console.log("coordonnées d'origine non définies");
+		alert('erreur coords org');
+		return false;
+	}
 	carte = new ol.Map({
 		layers: [bing,layer],
 		target: olMapDiv,
 		view: new ol.View({
-			center: [256066.43341247435, 6429073.462702302],
-			/* center: [-85984.49084942153, 6118662.690836201], // Mayenne */
-			zoom: 10
+			center: xorg,
+			zoom: zoom
 	        })
 	});
 
@@ -237,9 +248,9 @@ function page_actu_init(){
 	 $('.bloc-actu-pre').has('img').height('183px');
 }
 
-function page_accueil_init() {
+function page_accueil_init(install) {
 	page_accueil_maj_fond();
-	carte = init_carte('bloc-b-carte-in');
+	carte = init_carte('bloc-b-carte-in',install);
 
 	$.datepicker.setDefaults($.datepicker.regional['fr']);
 	var d = $('#f_date');
