@@ -18,6 +18,11 @@
 					<div class="item"><img src="image/illustration_k.jpg"/></div>
 				</div>
 			</div>
+			<p class="text-center">
+				<br/>
+				<a href="?p=carte" class="btn btn-primary btn-lg">Voir les observations en base</a>
+				<br/>
+			</p>
 		</div>
 		<div class="col-lg-8">
 				{if $install eq 'picnat'}
@@ -208,7 +213,7 @@
 			page_accueil_init("{$install}");
 			// {literal}
 		});
-		</script>{/literal}
+	</script>{/literal}
 	</body>
 </html>
 <!-- {$install} -->

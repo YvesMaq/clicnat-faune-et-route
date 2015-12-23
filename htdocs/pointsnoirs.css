@@ -246,3 +246,16 @@ img.bas-logos-picto-cg80:hover {
 	background-color: #efefef;
 	font-size: 12px;
 }
+
+#carte2 {
+	height: 500px;
+	width: 100%;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.ol-attribution ul {
+	font-size: 12px !important;
+}

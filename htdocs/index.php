@@ -35,6 +35,7 @@ require_once(OBS_DIR.'rss.php');
 require_once(OBS_DIR.'smarty.php');
 require_once(OBS_DIR.'docs.php');
 require_once(OBS_DIR.'enquetes.php');
+require_once(OBS_DIR.'reseau.php');
 require_once(DB_INC_PHP);
 
 class PointsNoirs extends clicnat_smarty {
@@ -195,6 +196,9 @@ class PointsNoirs extends clicnat_smarty {
 				header('Content-type: application/json');
 				echo $this->geojson();
 				break;
+			case 'carte':
+				$this->display('carte.tpl');
+				break;
 			default:
 				echo "404";
 				exit();
@@ -207,23 +211,23 @@ class PointsNoirs extends clicnat_smarty {
 			$tags .=  ",".CLICNAT_COLLISION_TAG;
 			$tags .= ",".CLICNAT_POSE_TAG;
 		}
-	$sql ='	SELECT	
-		citations.id_citation,
-		st_x(espace_point.the_geom) as x,
-		st_y(espace_point.the_geom) as y,
-		citations.id_espece
-	FROM
-		citations,
-		observations,
-		citations_tags,
-		espace_point
-	WHERE
-		citations_tags.id_tag in ('.$tags.')
-		and citations.id_citation = citations_tags.id_citation
-		and citations.id_observation = observations.id_observation
-		and observations.id_espace = espace_point.id_espace
-		and observations.date_observation > current_date - interval \'3 year\'
-		;';
+		$sql ='	SELECT	
+			citations.id_citation,
+			st_x(espace_point.the_geom) as x,
+			st_y(espace_point.the_geom) as y,
+			citations.id_espece
+		FROM
+			citations,
+			observations,
+			citations_tags,
+			espace_point
+		WHERE
+			citations_tags.id_tag in ('.$tags.')
+			and citations.id_citation = citations_tags.id_citation
+			and citations.id_observation = observations.id_observation
+			and observations.id_espace = espace_point.id_espace
+			and observations.date_observation > current_date - interval \'3 year\'
+			;';
 
 		$geo = [ "type" => "FeatureCollection", "features" => [] ];
 		$q = bobs_qm()->query($this->db, 'fer_espaces_l',$sql , []);
@@ -240,7 +244,7 @@ class PointsNoirs extends clicnat_smarty {
 					]
 				];
 		}
-			return json_encode($geo);
+		return json_encode($geo);
 	}
 
 	protected function before_actu() {

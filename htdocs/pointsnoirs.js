@@ -81,6 +81,94 @@ function Inventaire(id_espece,nom,nb_mort,nb_vivant,indice_q_mort,indice_q_vivan
 	}
 }
 
+function page_carte_init(install) {
+	var fond = new ol.layer.Tile({ 
+		source: new ol.source.TileWMS({ 
+			projection: 'EPSG:3857', 
+			url: "http://osm.picnat.fr/mapproxy/service", 
+			params: { 
+				LAYERS: 'bright' 
+			},
+			attributions: [new ol.Attribution({html: '<a href="http://www.clicnat.fr/">Openstreetmap</a> et ses contributeurs'})]
+		})
+	});
+	var vecteur = new ol.layer.Vector({
+		source: new ol.source.Vector({
+			url: '?p=geojson',
+			format: new ol.format.GeoJSON(),
+			attributions: [new ol.Attribution({html: '<a href="http://www.clicnat.fr/">Clicnat</a>'})]
+		}),
+		style: function (feature, resolution) {
+			var style;
+			switch (feature.get('reseau')) {
+				case 'av':
+					style = new ol.style.Style({ 
+						image: new ol.style.Icon({
+							src: 'image/icones/oiseau.png',
+							scale: resolution>10?0.5:1,
+							anchor: [0,1]
+						})
+					});
+					break;
+				case 'ar':
+					style = new ol.style.Style({ 
+						image: new ol.style.Icon({
+							src: 'image/icones/amphibien.png',
+							scale: resolution>10?0.5:1,
+							anchor: [1,0]
+						})
+					});
+					break;
+				case 'mt':
+					style = new ol.style.Style({ 
+						image: new ol.style.Icon({
+							src: 'image/icones/mammifere.png',
+							scale: resolution>10?0.5:1,
+							anchor: [1,1]
+						})
+					});
+					break;
+				default:
+					return;
+					/*
+					style = new ol.style.Style({ 
+						image: new ol.style.Circle({
+							radius: 6,
+							fill: new ol.style.Fill({ color: '#aeff43' }),
+							stroke: new ol.style.Stroke({ color: '#bfff89', width: 2 }) 
+						}),
+						text: new ol.style.Text({text: feature.get('reseau')})
+					});
+					*/
+
+			}
+			return [style];
+		}
+	});
+	var olMapDiv = document.getElementById('carte2');
+	xorg = false;
+	if (install == 'picnat') {
+		xorg = [256066.43341247435, 6429073.462702302];
+		zoom = 10;
+	} else if (install == 'mayenne') {
+		xorg = [-85984.49084942153, 6118662.690836201];
+		zoom = 10;
+	}
+	if (!xorg) {
+		console.log("coordonnées d'origine non définies");
+		alert('erreur coords org');
+		return false;
+	}
+	carte = new ol.Map({
+		layers: [fond,vecteur],
+		target: olMapDiv,
+		view: new ol.View({
+			center: xorg,
+			zoom: zoom
+	        })
+	});
+}	
+
 function init_carte(id_map, install) {
 	var styles = [ 'Road', 'Aerial', 'AerialWithLabels', 'collinsBart', 'ordnanceSurvey' ];
 	var bing = new ol.layer.Tile({ 
