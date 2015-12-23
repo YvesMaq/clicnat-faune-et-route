@@ -82,6 +82,7 @@ function Inventaire(id_espece,nom,nb_mort,nb_vivant,indice_q_mort,indice_q_vivan
 }
 
 function page_carte_init(install) {
+	page_accueil_maj_fond();
 	var fond = new ol.layer.Tile({ 
 		source: new ol.source.TileWMS({ 
 			projection: 'EPSG:3857', 
