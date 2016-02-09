@@ -6,6 +6,12 @@
 <a href="http://www.cg02.fr" target="_blank"><div id="logo_cg02" class="hoverscroll"></div></a>
 <a href="http://www.cg80.fr" target="_blank"><div id="logo_cg80" class="hoverscroll"></div></a>
 <a href="http://www.amiens.fr" target="_blank"><div id="logo_amiens" class="hoverscroll"></div></a>
+<div class="grandpied">
+	<p>Ce site a été réalisé par <a href="http://www.picardie-nature.org/">Picardie Nature</a> et utilise <a href="http://www.clicnat.fr">Clicnat</a>.
+	Ce <a href="https://github.com/picardie-nature/clicnat-faune-et-route">projet</a> est un logiciel libre placé sous licence AGPL-v3</p>
+	<p><a href="http://mayenne.faune-et-route.org">Faune et route</a> est aussi utilisé par le <a href="http://www.cpie-mayenne.org">CPIE de la Mayenne</a></p>
+</div>
+
 {/if}
 {if $install eq "mayenne"}
 <div class="logosmayenne">
@@ -14,6 +20,8 @@
 	<a href="http://www.cpie-mayenne.org/"><img src="image/mayenne/mayenne_cpie.jpg"/></a>
 </div>
 <div class="grandpied">
-	<a href="?t=ml">Mentions légales</a> site réalisé avec <a href="http://www.picardie-nature.org/">Picardie Nature</a> et <a href="http://www.clicnat.fr">Clicnat</a>.
+	<p>Ce site a été réalisé par le <a href="http://www.cpie-mayenne.org">CPIE Mayenne Bas-Maine</a> avec
+	<a href="http://www.picardie-nature.org/">Picardie Nature</a> et utilise <a href="http://www.clicnat.fr">Clicnat</a>.
+	Ce <a href="https://github.com/picardie-nature/clicnat-faune-et-route">projet</a> est un logiciel libre placé sous licence AGPL-v3</p>
 </div>
 {/if}

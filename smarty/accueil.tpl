@@ -149,7 +149,13 @@
 						J'accepte que mon nom apparaisse sur la carte de répartition des points noirs.
 					</label><br/>
 					<input type="checkbox" value="1" name="particip_ok" id="f_particip_ok" {if $sess_particip_ok == "1"}checked{/if}/>
-					<label for="f_particip_ok">Je souhaiterais participer à des actions de protection près de chez moi</label><br/>
+					<label for="f_particip_ok">
+						{if $install eq "mayenne"}
+							Je souhaiterais être informé des actions de l'association
+						{else}
+							Je souhaiterais participer à des actions de protection près de chez moi
+						{/if}
+					</label><br/>
 					<br/>
 					<input class="btn btn-primary" type="submit" value="Continuer"/>
 				</div>

@@ -43,7 +43,8 @@
 			page_carte_init("{$install}");
 			// {literal}
 		});
-	</script>{/literal}
+	</script>
+	{/literal}
 	</body>
 </html>
 
