@@ -17,7 +17,7 @@
 					<div class="item"><img src="image/illustration_i.jpg"/></div>
 					<div class="item"><img src="image/illustration_j.jpg"/></div>
 					<div class="item"><img src="image/illustration_k.jpg"/></div>
-				{if}
+				{/if}
 				{if $install eq 'mayenne'}
 					<div class="item active"><img src="image/mayenne/illustration_a.jpg"/></div>
 					<div class="item"><img src="image/mayenne/illustration_b.jpg"/></div>
@@ -78,33 +78,34 @@
 				{/if}
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-lg-8">
-			<div id="bloc-b-carte-in">
-				<div id="olmap" class="fill"></div>
+	<div class="well">
+		<div class="row">
+			<div class="col-lg-9">
+				<div id="bloc-b-carte-in">
+					<div id="olmap"></div>
+				</div>
+			</div>
+			<div class="col-lg-3">
+					<div id="form-instructions">
+						<h1>Instructions</h1>
+						<p><b>A</b> Placer la carte sur la zone de l'observation.</p>
+						<p id="statut_zoom_plus">Vous devez zoomer plus pour passer au point B,
+						vous pouvez utiliser la molette de la souris.</p>
+						<p id="statut_zoom_info"></p>
+						<div id="statut_zoom_ok" class="alert alert-success" style="display:none;">Vous pouvez passer a l'étape B</div>
+						<p><b>B</b> Cliquer sur le lieu précis de l'observation.</p>
+						<p id="statut_click"></p>
+						<p><b>C</b> Compléter et envoyer le formulaire.</p>
+					</div>
 			</div>
 		</div>
-		<div class="col-lg-4">
-				<div id="form-instructions">
-					<h1>Instructions</h1>
-					<p><b>A</b> Placer la carte sur la zone de l'observation.</p>
-					<p id="statut_zoom_plus">Vous devez zoomer plus pour passer au point B,
-					vous pouvez utiliser la molette de la souris.</p>
-					<p id="statut_zoom_info"></p>
-					<div id="statut_zoom_ok" class="alert alert-success" style="display:none;">Vous pouvez passer a l'étape B</div>
-					<p><b>B</b> Cliquer sur le lieu précis de l'observation.</p>
-					<p id="statut_click"></p>
-					<p><b>C</b> Compléter et envoyer le formulaire.</p>
-				</div>
-		</div>
 	</div>
+	<div class="well saisieinfo" style="display:none;">
 	<div class="row">
-		<div class="col-lg-12 saisieinfo" style="display:none;">
+		<div class="col-lg-12 saisieinfo" >
 			<h1>Informations</h1>
 		</div>
-	</div>
-	<div class="row">
-		<div id="form-saisie" style="display:none;" class="saisieinfo">
+		<div id="form-saisie">
 			<form id="fa">
 				<div class="col-lg-6">
 					<input type="hidden" name="lat" id="f_lat"/>
@@ -155,13 +156,13 @@
 			</form>
 		</div>
 	</div>
+	</div>
+	<div class="well obsespeces" style="display:none;">
 	<div class="row">
-		<div class="col-lg-12 obsespeces" style="display:none;">
+		<div class="col-lg-12">
 			<h1>Espèce observée</h1>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-4 obsespeces" style="display:none;">
+		<div class="col-lg-4">
 			<div id="groupes">
 				Chercher une espèce
 				<div class="groupe" id="autres" style="margin-bottom:15px;">
@@ -198,7 +199,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-4 obsespeces" style="display:none;">
+		<div class="col-lg-4">
 			<div id="fiche">
 				<form id="ffiche">
 					<input type="hidden" name="fiche_id_espece" id="fiche_id_espece"/>
@@ -228,12 +229,13 @@
 				</form>
 			</div>
 		</div>
-		<div class="col-lg-4 obsespeces" style="display:none;">
+		<div class="col-lg-4">
 			Animaux observés
 			<div id="tableau">
 				<br/>Pour ajouter une espèce cliquez sur son nom.
 			</div>
 		</div>
+	</div>
 	</div>
 	{include file="__footer.tpl"}
 	{literal}

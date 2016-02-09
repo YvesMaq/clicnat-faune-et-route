@@ -8,6 +8,9 @@
 	<link href="https://ssl.picardie-nature.org/statique/bootstrap-3.3.4-dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
 	<link href="https://ssl.picardie-nature.org/statique/OpenLayers-3.11.2/ol.css" rel="stylesheet" type="text/css"/>
 	<link href="pointsnoirs.css" media="all" rel="stylesheet" type="text/css"/>
+	{if $install eq "mayenne"}
+	<link href="pointsnoirs-mayenne.css" media="all" rel="stylesheet" type="text/css"/>
+	{/if}
 	{if $usedatatable}
 	<link href="http://deco.picardie-nature.org/datatables/media/css/demo_table.css" media="all" rel="stylesheet" type="text/css"/>
 	{/if}

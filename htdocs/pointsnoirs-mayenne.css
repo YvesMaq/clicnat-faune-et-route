@@ -1,0 +1,9 @@
+.logosmayenne img {
+	height: 100px;
+	padding: 4px;
+}
+
+div#banniere {
+	background-image: url('image/mayenne/banniere_fond.png');
+}
+
