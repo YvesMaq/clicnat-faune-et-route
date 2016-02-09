@@ -5,6 +5,7 @@
 			<div style="height: 30px;"></div>
 			<div id="bloc-img" class="carousel slide" data-ride="carousel">
 				<div class="carousel-inner">
+				{if $install eq 'picnat'}
 					<div class="item active"><img src="image/illustration_a.jpg"/></div>
 					<div class="item"><img src="image/illustration_b.jpg"/></div>
 					<div class="item"><img src="image/illustration_c.jpg"/></div>
@@ -16,6 +17,17 @@
 					<div class="item"><img src="image/illustration_i.jpg"/></div>
 					<div class="item"><img src="image/illustration_j.jpg"/></div>
 					<div class="item"><img src="image/illustration_k.jpg"/></div>
+				{if}
+				{if $install eq 'mayenne'}
+					<div class="item active"><img src="image/mayenne/illustration_a.jpg"/></div>
+					<div class="item"><img src="image/mayenne/illustration_b.jpg"/></div>
+					<div class="item"><img src="image/mayenne/illustration_c.jpg"/></div>
+					<div class="item"><img src="image/mayenne/illustration_d.jpg"/></div>
+					<div class="item"><img src="image/mayenne/illustration_e.jpg"/></div>
+					<div class="item"><img src="image/mayenne/illustration_f.jpg"/></div>
+					<div class="item"><img src="image/mayenne/illustration_g.jpg"/></div>
+					<div class="item"><img src="image/mayenne/illustration_h.jpg"/></div>
+				{/if}
 				</div>
 			</div>
 			<p class="text-center">
@@ -43,8 +55,26 @@
 				{/if}
 				{if $install eq 'mayenne'}
 				<h1>La faune sauvage sur les routes de Mayenne</h1>
-				<p>periculorum communium traxit. et instabat ut eum quoque cum tribunis et aliis pluribus ad comitatum imperatoris vinctum perduceret: quo percitus ille exitio urgente abrupto ferro eundem adoritur Paulum. et quia languente dextera, letaliter ferire non potuit, iam districtum mucronem in proprium latus inpegit. hocque deformi genere mortis excessit e vita iustissimus rector ausus miserabiles casus levare multorum.</p>
-				<p>Utque aegrum corpus quassari etiam levibus solet offensis, ita animus eius angustus et tener, quicquid increpuisset, ad salutis suae dispendium existimans factum aut cogitatum, insontium caedibus fecit victoriam luctuosam.</p>
+				<p>Chaque espèce de la faune a plusieurs territoires vitaux et se déplace entre eux,
+				quotidiennement ou saisonnièrement pour la recherche de nourriture, le repos, la
+				reproduction... Les routes, qui constituent les voies de déplacement pour l'homme,
+				créent souvent des obstacles, parfois infranchissables, à leur déplacement. L'issue
+				est souvent fatale pour les animaux. Les collisions avec le grand gibier (sanglier,
+				chevreuil, cerf) peuvent aussi être à l'origine d'accidents graves.</p>
+				<p>Une étude du réseau formé par des milieux à flore et faune particulièrement riches
+				(réservoirs de biodiversité) et des voies de déplacements entre ces milieux 
+				(corridors écologiques) est en cours sur Mayenne Communauté.</p>
+				<p>Cette enquête, inédite en Mayenne, a pour but de localiser et recenser les points
+				de conflit. Ainsi, les voies de déplacements des animaux seront identifiées. Dans 
+				un second temps, des mesures de gestion pourront être mises en place, s'il est possible,
+				pour limiter les impacts du réseau routier.</p>
+				<p>Vous souhaitez nous aider à connaître ces zones de collisions ? Participez en
+				transmettant vos observations d'animaux morts ou blessés ou ceux que vous avez réussi
+				à éviter. Si vos observations se situent hors Mayenne Communauté, saisissez-les également.
+				Ainsi nous pourrons étendre nos actions.</p>
+				<p>Si vous souhaitez plus de renseignements sur ce projet, cliquez ici (lien vers page
+				TVB de notre site) ou contactez-nous au 02 43 03 79 62 ou par mail à 
+				contact@cpie-mayenne.org.</p>
 				{/if}
 		</div>
 	</div>
