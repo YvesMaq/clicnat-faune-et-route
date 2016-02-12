@@ -176,7 +176,7 @@
 					<script>
 					//{literal}
 					$('#recherche_esp').autocomplete({
-						source: '?p=espece_autocomplete2', 
+						source: '?p=espece_autocomplete2&nohtml=1',
 						select: function (event,ui) {
 							set_fiche_id_espece_nom(ui.item.value, ui.item.label);
 							return false; 
