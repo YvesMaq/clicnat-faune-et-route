@@ -152,7 +152,7 @@ function page_carte_init(install) {
 		xorg = [256066.43341247435, 6429073.462702302];
 		zoom = 10;
 	} else if (install == 'mayenne') {
-		xorg = [-85984.49084942153, 6118662.690836201];
+		xorg = [-69109, 6157382];
 		zoom = 10;
 	}
 	if (!xorg) {
@@ -206,7 +206,7 @@ function init_carte(id_map, install) {
 		xorg = [256066.43341247435, 6429073.462702302];
 		zoom = 10;
 	} else if (install == 'mayenne') {
-		xorg = [-85984.49084942153, 6118662.690836201];
+		xorg = [-69109, 6157382];
 		zoom = 10;
 	}
 	if (!xorg) {
