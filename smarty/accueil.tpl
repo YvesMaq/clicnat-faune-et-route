@@ -59,22 +59,12 @@
 				quotidiennement ou saisonnièrement pour la recherche de nourriture, le repos, la
 				reproduction... Les routes, qui constituent les voies de déplacement pour l'homme,
 				créent souvent des obstacles, parfois infranchissables, à leur déplacement. L'issue
-				est souvent fatale pour les animaux. Les collisions avec le grand gibier (sanglier,
-				chevreuil, cerf) peuvent aussi être à l'origine d'accidents graves.</p>
-				<p>Une étude du réseau formé par des milieux à flore et faune particulièrement riches
-				(réservoirs de biodiversité) et des voies de déplacements entre ces milieux 
-				(corridors écologiques) est en cours sur Mayenne Communauté.</p>
-				<p>Cette enquête, inédite en Mayenne, a pour but de localiser et recenser les points
-				de conflit. Ainsi, les voies de déplacements des animaux seront identifiées. Dans 
-				un second temps, des mesures de gestion pourront être mises en place, s'il est possible,
-				pour limiter les impacts du réseau routier.</p>
-				<p>Vous souhaitez nous aider à connaître ces zones de collisions ? Participez en
+				est souvent fatale pour les animaux.</p>
+				<p>Vous souhaitez nous aider à connaître ces zones de collisions ? <b>Participez en
 				transmettant vos observations d'animaux morts ou blessés ou ceux que vous avez réussi
-				à éviter. Si vos observations se situent hors Mayenne Communauté, saisissez-les également.
-				Ainsi nous pourrons étendre nos actions.</p>
-				<p>Si vous souhaitez plus de renseignements sur ce projet, cliquez ici (lien vers page
-				TVB de notre site) ou contactez-nous au 02 43 03 79 62 ou par mail à 
-				contact@cpie-mayenne.org.</p>
+				à éviter.</b>
+				<p>Si vous rencontrez des difficultés dans la saisie de vos observations, contactez-nous
+				au 02 43 03 79 62 ou contact@cpie-mayenne.org</p>
 				{/if}
 		</div>
 	</div>
