@@ -10,6 +10,8 @@
 	<link href="pointsnoirs.css" media="all" rel="stylesheet" type="text/css"/>
 	{if $install eq "mayenne"}
 	<link href="pointsnoirs-mayenne.css" media="all" rel="stylesheet" type="text/css"/>
+	{else}
+	<link href="http://clicnat.fr/css/logo.css" media="all" rel="stylesheet" type="text/css"/>
 	{/if}
 	{if $usedatatable}
 	<link href="http://deco.picardie-nature.org/datatables/media/css/demo_table.css" media="all" rel="stylesheet" type="text/css"/>
